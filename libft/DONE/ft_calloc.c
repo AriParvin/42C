@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:54:32 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/06 16:39:30 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:23:13 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,36 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int	*ptr;
+	void	*ptr;
+	size_t	bytes;
+	char	*p;
 
-	 
+	bytes = nmemb * size;
+	ptr = malloc(bytes);
+	p = (char *)ptr;
+	if (ptr == NULL)
+		return (NULL);
+	while (bytes--)
+		*p++ = 0;
+	return (ptr);
 }
-
+/*
 int	main()
 {
-	size_t n = 21;
-	size_t s = 2;
-	printf("SL:\t%p\n",calloc(n, s));
-	printf("42:\t%p\n",ft_calloc(n, s));
+	int *ptr = (int *)calloc(5, sizeof(int));
+	int *ptr2 = (int *)ft_calloc(5, sizeof(int));
+
+	if(ptr == NULL)
+		return(printf("MEMORY COULD NOT BE ALLOCATED\n")  
+	else
+	{
+		while (*ptr2++)
+		{
+			printf("\t%d\n", ptr2[i]);
+			free(ptr2);
+		}
+	}
+	return (0);
 }
+TEST NOT FINISHED
+*/

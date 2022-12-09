@@ -1,47 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strstr_to_strnstr.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:01:47 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/05 17:36:28 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/09 14:38:08 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include<stdio.h>
+#include<string.h>
 
-char	*ft_strstr(char *str, char *to_find)
+char    *ft_strnstr(const char *str, const char *sub, size_t len)
 {
-	char	*p;
-
-	while (*str++ != '\0') 
-	{
-		if (*str == to_find[0])
-		{
-			p = str;
-
-			while ((*str++ == *to_find++) && (*to_find++ != '\0'))
-			{	
-/*
-				if (str[i] != to_find[j])
-					break;
-*/	
-				if (*to_find == '\0')
-					return (p);
-			}
-		str = p++;
-		}		
-	}
-	return (str);
+    int i;
+    int j;
+    i = 0;
+    j = 0;
+    if (!sub)
+        return (str);
+    while (*str++)
+    {
+        if (str == to_find[j])
+        {
+            while ((str[i + j] == to_find[j]) || (to_find[j] == '\0'))
+            {
+                if (!to_find[j])
+                {
+                    return (&str[i]);
+                }
+                j++;
+            }
+        }
+        j = 0;
+        i++;
+    }
+    return (0);
 }
-
-int	main(void)
+int main(void)
 {
-	printf ("42:\t%s\n", ft_strstr("FooBarFoo", "Bar"));
-	printf ("SL:\t%s\n", strstr("FooBarFoo", "Bar"));
-	return (0);
+    char *needle = "co";
+    char *str = "Hello, welcodme to my code!";
+    printf ("%s\n", ft_strstr(str, needle));
+    printf("%s\n", strstr(str, needle));
+    return (0);
 }

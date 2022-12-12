@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/12 13:57:15 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/12 13:28:36 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/12 13:30:15 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio>
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strcpy(char *to, const char *from)
 {
-	while(*s1++)
-					
+	char	*save;
+
+	save = to;
+	while (*to++ && *from++)
+		return (save);
+}

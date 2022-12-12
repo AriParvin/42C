@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/05 10:15:45 by aparvin          ###   ########.fr       */
+/*   Created: 2022/11/28 12:47:35 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/09 10:15:17 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
-char	*ft_strrchr(const char *s, int c)
+size_t	ft_strlen(char *s)
 {
-	char	*match;
-	int		i;
+	char	*p;
 
-	i = 0;
-	match = NULL;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-			match = ((char *)&s[i]);
-		i++;
-	}
-	if (match == NULL)
-		return (NULL);
-	return (match);
+	p = s;
+	while (*p)
+		p++;
+	return (p - s);
 }
 /*
-int main(void)
+int main()
 {
-	const char* s = "Hello World";
-	int c = 'l';
-
-	printf("source:\t%s\tmatch:\t%c\n", s, c);
-	printf("stdlib:\t%s\n", strrchr(s,c));
-	printf("42:\t%s\n", ft_strrchr(s, c));
+	char* str = "Hello World";
+	printf("SL:\t%ld\n", strlen(str));
+	printf("42:\t%ld\n", ft_strlen(str));
 }
 */

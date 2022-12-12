@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 16:58:01 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/05 10:44:23 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/09 14:40:16 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdio.h>
 #include <string.h>
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strnstr(const char *str, const char *sub, size_t len)
 {
-	char	*match;
-	int		i;
+	char	*cstr;
+	char	*csub;
 
-	i = 0;
-	match = NULL;
-	while (s[i] != '\0')
+	cstr = (char *)str;
+	csub = (char *)sub;
+	if (!*sub)
+		return (cstr);
+	while (len--)
 	{
-		if (s[i] == c)
-			match = ((char *)&s[i]);
-		i++;
+		if (*str++ == *sub++)
+			return (csub);
 	}
-	if (match == NULL)
-		return (NULL);
-	return (match);
+	return (NULL);
 }
 /*
 int main(void)
 {
-	const char* s = "Hello World";
-	int c = 'l';
+	const char *str = "Hello World";
+	const char *sub = "World";
+	size_t		len = 7;
 
-	printf("source:\t%s\tmatch:\t%c\n", s, c);
-	printf("stdlib:\t%s\n", strrchr(s,c));
-	printf("42:\t%s\n", ft_strrchr(s, c));
+	printf("strnstr(%s, %s, %ld)\n", str, sub, len);
+	printf("42:\t%s\n", ft_strnstr(str, sub, len));
 }
 */

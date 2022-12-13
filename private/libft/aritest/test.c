@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 12:40:07 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/12 14:54:40 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:16:01 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -27,7 +27,6 @@
 #include "ft_strlen.c"
 #include "ft_memset.c"
 #include "ft_bzero.c"
-/*
 #include "ft_memcpy.c"
 #include "ft_memmove.c"
 #include "ft_strlcpy.c"
@@ -40,10 +39,10 @@
 #include "ft_memchr.c"
 #include "ft_memcmp.c"
 #include "ft_strnstr.c"
-#include "ft_atoi.c"
+//#include "ft_atoi.c"
 #include "ft_calloc.c"
 #include "ft_strdup.c"
-*/
+
 
 int main()
 {	
@@ -90,5 +89,7 @@ int main()
 	ft_bzero(bz2, n);
 	printf("SL:\t%s\n",bz1);
 	printf("42:\t%s\n",bz2);
+
+
 
 }

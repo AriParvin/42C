@@ -6,9 +6,14 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:48:28 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/05 15:15:09 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:32:24 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef	LIBFT_H
+#define LIBFT_H
+
+#include <unistd.h>
+#include <stdlib.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -43,3 +48,5 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+#endif

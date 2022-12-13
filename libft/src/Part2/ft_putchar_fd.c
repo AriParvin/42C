@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/13 14:29:05 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/13 12:48:55 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/13 13:03:06 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_matchset(char c, char const *set)
+#include <unistd.h>
+
+void	ft_putchar_fd(char c, int fd)
 {
-	while (*set)
-	{
-		if (set == c)
-			return (1);
-		set++;
-	}
-	return (0);
+	if (c && fd >= 0)
+		write(fd, &c, 1);
 }
-
-char	*ft_strtrim(char const *s1, char const *set)
+/*
+int main()
 {
-	char	*out;
-	while (*s1 && ft_matchset(*s1, set))
-		s1++;
-	
+	char c = 'c';
+	int fd = 2;
+	ft_putchar_fd(c, fd);
+}
+*/

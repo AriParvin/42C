@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/13 14:29:05 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/13 13:19:05 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/13 13:32:39 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_matchset(char c, char const *set)
+#include <unistd.h>
+
+void	ft_putendl_fd(char *s, int fd)
 {
-	while (*set)
+	if (s && fd > 0)
 	{
-		if (set == c)
-			return (1);
-		set++;
+		while (*s)
+		{
+			write(fd, s, 1);
+			s++;
+		}
+		write(fd, "\n", 1);
 	}
-	return (0);
 }
-
-char	*ft_strtrim(char const *s1, char const *set)
+/*
+int main()
 {
-	char	*out;
-	while (*s1 && ft_matchset(*s1, set))
-		s1++;
-	
+	char *s = "FooBar";
+	int fd = 1;
+	ft_putendl_fd(s, fd);
+}
+*/

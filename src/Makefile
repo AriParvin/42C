@@ -16,10 +16,6 @@
 	CC			= gcc
 	CFLAGS		= -Wall -Wextra -Werror
 	
-	#DIRECTORIES
-	SRCDIR		= src/
-	INCLUDES	= inc/
-
 	#SOURCE
 	SRC			= $(wildcard $(SRCDIR)/*.c)
 

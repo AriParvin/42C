@@ -6,34 +6,37 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 18:49:19 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/05 10:39:44 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/16 21:03:38 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	unsigned int		i;
+	size_t	i;
+
 	i = 0;
-	while (s1[i] != '\0' && i < n)
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && i < n - 1)
 	{
 		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-
-int	main(void)
+/*
+int	main(int ac, char **av)
 {
-	char *s1 = "Hello World";
-	char *s2 = "World Hello";
-	unsigned int n = 6;
-	
-	printf("strcmp(%s, %s, %d)\n", s1, s2, n);
-	printf("42:\t%d\n", ft_strncmp(s1, s2, n));	
-	printf("SL:\t%d\n", strncmp(s1, s2, n));	
-	
+	if (ac == 4){
+	printf("IN:\t%s, %s, %d\n", av[1], av[2], atoi(av[3]));
+	printf("42:\t%d\n", ft_strncmp(av[1], av[2],atoi(av[3])));
+	printf("SL:\t%d\n", strncmp(av[1], av[2], atoi(av[3])));	
+	}
+	else
+		return 0;
 }
-			
+*/

@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:19:05 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/13 13:32:39 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/16 12:29:11 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,3 @@ void	ft_putendl_fd(char *s, int fd)
 		write(fd, "\n", 1);
 	}
 }
-/*
-int main()
-{
-	char *s = "FooBar";
-	int fd = 1;
-	ft_putendl_fd(s, fd);
-}
-*/

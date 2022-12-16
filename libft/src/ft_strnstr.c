@@ -6,36 +6,35 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:44:23 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 14:40:16 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/16 20:00:09 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include <string.h>
+#include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *sub, size_t len)
+char	*ft_strnstr(const char *big, const char *lil, size_t l)
 {
-	char	*cstr;
-	char	*csub;
+	size_t	i;
+	size_t	j;
 
-	cstr = (char *)str;
-	csub = (char *)sub;
-	if (!*sub)
-		return (cstr);
-	while (len--)
+	i = 0;
+	j = 0;
+	if (lil[0] == '\0')
+		return ((char *)big);
+	while (big[i] && (i < l))
 	{
-		if (*str++ == *sub++)
-			return (csub);
+		if (big[i] == lil[j])
+		{
+			while (((big[i + j] == lil[j]) || (lil[j] == '\0')) && (i + j) <= l)
+			{
+				if (!lil[j])
+					return ((char *) &big[i]);
+				j++;
+			}
+		}
+		j = 0;
+		i++;
 	}
 	return (NULL);
 }
-/*
-int main(void)
-{
-	const char *str = "Hello World";
-	const char *sub = "World";
-	size_t		len = 7;
-
-	printf("strnstr(%s, %s, %ld)\n", str, sub, len);
-	printf("42:\t%s\n", ft_strnstr(str, sub, len));
-}
-*/

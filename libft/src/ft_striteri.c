@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:26:03 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 17:29:50 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/16 12:54:04 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/16 13:24:46 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(unsigned char c)
+#include <stdlib.h>
+#include "libft.h"
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (c >= 32 && c < 127)
-		return (1);
-	return (0);
+	int	i;
+	int	ii;
+
+	i = 0;
+	ii = 0;
+	if (s != NULL && f != NULL)
+	{
+		i = ft_strlen(s);
+		while (ii < i)
+		{
+			(*f)(ii, s);
+			s++;
+			ii++;
+		}
+	}
 }

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/13 14:29:05 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/16 18:32:32 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/16 18:37:29 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_matchset(char c, char const *set)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	while (*set)
+	size_t	i;
+
+	i = 0;
+	if (dstsize > 0)
 	{
-		if (set == c)
-			return (1);
-		set++;
+		while (i < dstsize - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	return (0);
+	return (ft_strlen((char *)src));
 }
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*out;
-	while (*s1 && ft_matchset(*s1, set))
-		s1++;
-	

@@ -5,44 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 11:48:06 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/02 14:17:33 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/16 22:09:10 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/16 22:09:13 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 int	ft_atoi(char *str)
 {
-	int	res;
-	int	sign;
 	int	i;
+	int	sign;
+	int	tot;
 
-	res = 0;
-	sign = 1;
 	i = 0;
-	if (str[0] == '-')
+	sign = 1;
+	tot = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
 	{
-		sign = -1;
+		sign *= -1;
 		i++;
 	}
-	while (str[i] != '\0')
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9' )
 	{
-		if (!(str[i] >= 48 && str[i] <= 57))
-			break ;
-		res = res * 10 + str[i] - 48;
+		tot = tot * 10 + str[i] - '0';
 		i++;
 	}
-	return (sign * res);
+	return (tot * sign);
 }
-/*
-int main()
-{
-	char src[]= "-42XXX";
-	printf("SRC:\t%s\n",src );
-	printf("SL:\t%d\n", atoi(src ));
-	printf("42:\t%d\n", ft_atoi(src ));
-}	
-*/

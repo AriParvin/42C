@@ -1,51 +1,39 @@
-#include<stdio.h>
-#include<string.h>
-/*
-   ARRAY VERSION
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 12:06:45 by aparvin           #+#    #+#             */
+/*   Updated: 2022/12/16 12:10:59 by aparvin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char    *ft_strstr(char *str, char *to_find)
+#include <string.h>
+
+char	*ft_strstr(char *str, char *to_find)
 {
-    int i;
-    int j;
-    i = 0;
-    j = 0;
-    if (to_find[0] == '\0')
-        return (str);
-    while (str[i])
-    {
-        if (str[i] == to_find[j])
-        {
-            while ((str[i + j] == to_find[j]) || (to_find[j] == '\0'))
-            {
-                if (!to_find[j])
-                {
-                    return (&str[i]);
-                }
-                j++;
-            }
-        }
-        j = 0;
-        i++;
-    }
-    return (0);
-}
+	int	i;
+	int	ii;
 
-	POINTER VERSION - WIP
-
-char	*ft_strstr(char *str, char *find)
-{
-	if (!*find)
+	i = 0;
+	ii = 0;
+	if (to_find[0] == '\0')
 		return (str);
-	while (*str++)
+	while (str[i])
 	{
-		if (str == *find)
+		if (str[i] == to_find[ii])
 		{
-			while(
-	*/
-int main(void)
-{
-    char needle[] = "co";
-    char str[] = "Hello, welcodme to my code!";    
-    printf ("SRC:\t%s\nX:\t%s\n42:\t%s\nSL:\t%s\n", str, needle, ft_strstr(str, needle), strstr(str, needle));
-    return (0);
+			while ((str[i + ii] == to_find[ii]) || (to_find[ii] == '\0'))
+			{
+				if (!to_find[ii])
+					return (&str[i]);
+				ii++;
+			}
+		}
+		ii = 0;
+		i++;
+	}
+	return (0);
 }

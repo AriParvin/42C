@@ -6,21 +6,13 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:58:42 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/12 13:37:19 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/16 23:36:55 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	while (*str++)
-		len++;
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

@@ -6,21 +6,12 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 12:05:28 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/17 22:23:37 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
-
-static size_t	ft_strlen(const char *s)
-{
-	const char	*p;
-
-	p = s;
-	while (*p)
-		p++;
-	return (p - s);
-}
+#include "libft.h"
 
 static int	ft_matchset(char c, char const *set)
 {

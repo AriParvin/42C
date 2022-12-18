@@ -6,45 +6,25 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:59:10 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 11:26:08 by aparvin          ###   ########.fr       */
+/*   Updated: 2022/12/17 19:22:49 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "libft.h"
 
-char	*ft_strcpy(char *dst, char *src)
-{
-	char	*tmp;
-
-	tmp = dst;
-	while (*src)
-		*dst++ = *src++;
-	*dst = '\0';
-	return (tmp);
-}
-
-long int	ft_strlen(char *s)
-{
-	char	*p;
-
-	p = s;
-	while (*p)
-		p++;
-	return (p - s);
-}
-
-char	*ft_strdup(char *s)
+char	*ft_strdup(const char *s)
 {
 	int		len;
 	char	*d;
 
 	len = ft_strlen(s) + 1;
-	d = malloc (len);
+	d = malloc(len);
 	if (d == NULL)
 		return (NULL);
-	ft_strcpy(d, s);
+	ft_strlcpy(d, s, len);
 	return (d);
 	free(d);
 }

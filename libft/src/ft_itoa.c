@@ -13,29 +13,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include "libft.h"
 
-static char	*ft_revstr(char *src, int len)
+static void	ft_write_n(char *res, unsigned int n, int len, int sign)
 {
 	int		i;
-	char	tmp;
+	int		ii;
 
 	i = 0;
-	while (i < len / 2)
+	ii = 0;
+	if (sign == 1)
 	{
-		tmp = src[i];
-		src[i] = src[len - i - 1];
-		src[len - i - 1] = tmp;
+		res[0] = '-';
 		i++;
 	}
-	return (src);
+	while (i < len)
+	{
+		res[len - ii - 1] = (n % 10) + '0';
+		n = n / 10;
+		i++;
+		ii++;
+	}
+	res[len] = '\0';
 }
 
-static int	ft_intlen(int n)
+static int	ft_length_int(int n)
 {
 	int	len;
 
+	if (n == 0)
+		return (1);
 	len = 0;
+	if (n < 0)
+	{
+		n = -n;
+		len = 1;
+	}
 	while (n >= 1)
 	{
 		n /= 10;
@@ -46,41 +60,28 @@ static int	ft_intlen(int n)
 
 char	*ft_itoa(int n)
 {
-	int				len;
-	int				i;
-	char			*str;
-	unsigned char	c;	
-	int				sign;
+	int		len;
+	int		sign;
+	char	*res;
 
+	if (n == INT_MIN)
+		return (ft_strdup("-2147483648"));
 	sign = 0;
-	len = 0;
+	len = ft_length_int(n);
 	if (n < 0)
 	{
 		n *= -1;
 		sign = 1;
 	}
-	len = ft_intlen(n);
-	str = malloc (sizeof(char) * len + 1 + sign);
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (len > 0)
+	res = malloc(sizeof(char) * len + 1);
+	if (!res)
+		return (0);
+	if (n == 0)
 	{
-		c = (n % 10) + '0';
-		str[i] = c;
-		i++;
-		n = n / 10;
-		len--;
+		res[1] = '\0';
+		res[0] = '0';
 	}
-	if (sign == 1)
-		str[i] = '-';
-	str[++i] = '\0';
-	ft_revstr(str, strlen(str));
-	return (str);
+	if (n > 0)
+		ft_write_n(res, n, len, sign);
+	return (res);
 }
-/*
-int main()
-{
-	printf("%s",ft_itoa(-12345));
-}
-*/

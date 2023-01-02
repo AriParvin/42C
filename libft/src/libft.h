@@ -13,28 +13,16 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-/*
-** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
-**                              HEADERS
-*/
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
 
-/*
-** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
-**                              STRUCT DECLARATIONS
-*/
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
 
-/*
-** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
-**                              FUNCTION PROTOTYPES
-*/
 int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isalpha(int c);

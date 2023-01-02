@@ -12,22 +12,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-int	ft_isdigit(unsigned char c)
+int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
-		return (2048);
-	return (0);
+	return (c >= 48 && c <= 57);
 }
-/*
-int main(void)
-{
-	unsigned char c1 = 'a';
-	unsigned char c2 = 50;
-
-	printf("SL:\t%d\n", isdigit(c1));
-	printf("42:\t%d\n", ft_isdigit(c1));
-
-	printf("SL:\t%d\n", isdigit(c2));
-	printf("42:\t%d\n", ft_isdigit(c2));
-}
-*/

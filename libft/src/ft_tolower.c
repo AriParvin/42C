@@ -12,12 +12,11 @@
 #include <stdio.h>
 #include <ctype.h>
 
-char	ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c = c + 32);
-	else
-		return (c);
+		return (c += 32);
+	return (c);
 }
 /*
 int main()

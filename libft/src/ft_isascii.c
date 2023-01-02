@@ -12,21 +12,7 @@
 #include <ctype.h>
 #include <stdio.h>
 
-int	ft_isascii(unsigned char c)
+int	ft_isascii(int c)
 {
-	if (c <= 127)
-		return (1);
-	return (0);
+	return (c <= 127 && c >= 0);
 }
-/*
-int main(void)
-{
-	unsigned char c1 = 200;
-	unsigned char c2 = 3;
-
-	printf("SL:\t%d\n", isascii(c1));
-	printf("42:\t%d\n", ft_isascii(c1));
-	printf("SL:\t%d\n", isascii(c2));
-	printf("42:\t%d\n", ft_isascii(c2));
-}
-*/

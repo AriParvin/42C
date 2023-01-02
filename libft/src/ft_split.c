@@ -12,6 +12,7 @@
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static char	**allocate_array(int size)
 {
@@ -95,3 +96,12 @@ char	**ft_split(char const *s, char c)
 	arr_ptr[words] = 0;
 	return (arr_ptr);
 }
+/*
+int main()
+{
+	char const *s = "Foo%Bar";
+	char c = '%';
+	printf("%s", ft_split(s, c));
+	return (0);
+}
+*/

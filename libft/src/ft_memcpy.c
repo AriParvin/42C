@@ -18,6 +18,8 @@ void	*ft_memcpy(void	*dst, void	*src, size_t len)
 	char	*csrc;
 	char	*cdst;
 
+	if (!dst)
+		return (NULL);
 	csrc = (char *)src;
 	cdst = (char *)dst;
 	while (len--)

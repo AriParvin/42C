@@ -6,13 +6,13 @@
 #    By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 20:28:07 by aparvin           #+#    #+#              #
-#    Updated: 2023/01/03 15:48:53 by aparvin          ###   ########.fr        #
+#    Updated: 2023/01/04 16:00:41 by aparvin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 
-CC		= gcc
+CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 AR		= ar rcs
 RM		= rm -f
@@ -52,15 +52,15 @@ SOURCES	=	ft_isalpha.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
 
-BONUS =		ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+BONUS =		ft_lstnew_bonus.c \
+			ft_lstadd_front_bonus.c \
+			ft_lstsize_bonus.c \
+			ft_lstlast_bonus.c \
+			ft_lstadd_back_bonus.c \
+			ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c \
+			ft_lstiter_bonus.c \
+			ft_lstmap_bonus.c
 
 all: $(NAME)
 
@@ -71,8 +71,8 @@ BONUS_OBJECTS = $(BONUS:.c=.o)
 $(NAME): $(OBJECTS)
 	$(AR) $@ $^ 
 
-bonus: $(BONUS)
-	$(AR) $(NAME) $^
+bonus: $(BONUS_OBJECTS)
+	$(AR) $(NAME) $(BONUS_OBJECTS)
 
 %.o: %.c
 	 $(CC) $(CFLAGS) -c $<

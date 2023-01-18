@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 17:45:33 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 17:49:28 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/01/05 15:26:46 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*result;
-	t_list	*temp;
+	t_list	*newlst;
+	t_list	*newobj;
 
-	if (lst == NULL || f == NULL)
+	if (!lst || !f || !del)
 		return (NULL);
-	result = NULL;
+	newlst = NULL;
 	while (lst)
 	{
-		temp = ft_lstnew((*f)(lst->content));
-		if (!temp)
+		newobj = ft_lstnew(f(lst->content));
+		if (!newobj)
 		{
-			ft_lstclear(&result, del);
+			ft_lstclear(&newlst, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&result, temp);
-		temp = temp->next;
+		ft_lstadd_back(&newlst, newobj);
 		lst = lst->next;
 	}
-	return (result);
+	return (newlst);
 }

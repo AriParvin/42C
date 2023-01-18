@@ -1,33 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/18 14:00:38 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/18 16:01:51 by aparvin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <unistd.h>
-/*
+
 char	*get_next_line(int fd)
-{
-*/
-size_t	linelen(char *str)
-{	
-	size_t len;
-	while (*str++ != "\n" || *str++ != "\0")
-		len++;
-	return (len);
-}
+{		
+	char		*line;
+	static char	*left_str;
 
-void	writeline(char *str)
-{
-	size_t i;
-	while (str[i] != "\0" || str[i] != "\n")
-	{
-		write (1, str[i], 1);
-		i++;
-	}
-	if (str[i] == "\n")
-		write (1, "\n", 1);
-}
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 
-char	*gnl_test(char *str)
-{
-	int		i = 0;
-	char	*line = (char *)malloc sizeof(linelen(str));
-
-	while (*str++ != "\0")
-		*line++ = writeline(str);

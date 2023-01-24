@@ -16,41 +16,56 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-#define BUFFER_SIZE 42
-
 char	*get_next_line(int fd)
 {		
 	char			*line;
 	static char		*buf_pos;
 	static char		*eol_pos;
-	static char		buffer[BUFFER_SIZE];
-	static size_t	offset;
+	static char		buffer[BUFFER_SIZE + 1];
+	static int		offset;
+	char			*substr;
 
 	line = NULL;
 	if (!buf_pos)
 	{
 		offset = read(fd, buffer, BUFFER_SIZE);
-		//printf("\nRead bytes:\t%ld", offset);
+		buffer[offset] = '\0';
+		if (offset <= 0)
+			return (NULL);
 		buf_pos = buffer;
 	}
 	while (1)
 	{
-		eol_pos = eol_check(&buf_pos, offset);
 		if (!buf_pos)
-			return (NULL);
+		{
+			offset = read(fd, buffer, BUFFER_SIZE);
+			buffer[offset] = '\0';
+			if (offset <= 0)
+				return (line);
+			buf_pos = buffer;
+		}
+		eol_pos = eol_check(buf_pos);
 		if (!eol_pos)
 		{
-			line = strjoin_plus(&line, buf_pos);
-			offset = read(fd, buffer, BUFFER_SIZE);
-			buf_pos = buffer;
+			line = write_new(&line, buf_pos);
+			if (!line)
+				return (NULL);
+			buf_pos = NULL;
 		}
 		if (eol_pos)
 		{
-			line = strjoin_plus(&line, ft_substr(buf_pos, 0, eol_pos - buf_pos + 1));
-			buf_pos = eol_pos + 1;
-			if (*buf_pos == '\0')
+			substr = ft_substr(buf_pos, 0, eol_pos - buf_pos + 1);
+			if (!substr)
+				return (NULL);
+			line = write_new(&line, substr);
+			free(substr);
+			if (!line)
+				return (NULL);
+			if (*(eol_pos + 1) == '\0')
 				buf_pos = NULL;
-			break;
+			else
+				buf_pos = eol_pos + 1;
+			return (line);
 		}
 	}
 	return (line);
@@ -59,19 +74,25 @@ char	*get_next_line(int fd)
 int main()
 {
 	int 	fd;
+	char	*next_line;
 
-	fd = open("test.txt", O_RDONLY);	
+	fd = open ("test.txt", O_RDONLY);	
 	if (fd == -1)
 	{
 		printf("\nERROR OPENING FILE\nDESCRIPTOR %d IS INVALID\n", fd);
 		return (0);
 	}
-	else
+	printf("\nOpened file on descriptor %d\n", fd);
+	while ((next_line = get_next_line(fd)))
 	{
-		printf("\nOpened file on descriptor %d\n", fd);
-		get_next_line(fd);
-		close(fd);
-		printf("\n\nFILE CLOSED\n\n");
-		return (0);
+		printf("%s" , next_line);
+		free(next_line);
 	}
+	if (next_line)
+		free(next_line);
+	close(fd);
+	printf("\n\nFILE %d CLOSED\n\n", fd);
+	fd = open("test.txt", O_RDONLY);
+	return (0);
 }
+

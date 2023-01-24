@@ -12,53 +12,84 @@
 
 #include "get_next_line.h"
 
-char	*eol_check(char **buffer, size_t offset)
+char	*eol_check(char *buf_pos)
 {
-	size_t	i;
-	char	*eol_position;
+	int i;
 
 	i = 0;
-	while (*(*buffer + i) != '\0' && offset > 0)
+	while(buf_pos[i] != '\0')
 	{
-		if (*(*buffer + i) == '\n')
-		{
-			eol_position = (*buffer + i);
-			return (eol_position);
-		}
-		offset++;
+		if (buf_pos[i] == '\n')
+			return (&buf_pos[i]);
 		i++;
 	}
-	if (offset == 0)
-		*buffer = NULL;
+
 	return (NULL);
 }
 
-char	*strjoin_plus(char **s1, char *s2)
+char	*write_new(char **line_ptr, char *buf_pos)
 {
-	char	*result;
+	char	*line;
 
-	if (*s1 == NULL)
+	if (*line_ptr == NULL)
 	{
-		*s1 = malloc(1);
-		if (!*s1)
+		*line_ptr = malloc(1);
+		if (!*line_ptr)
 			return (NULL);
-		*s1[0] = '\0';
+		*(line_ptr[0]) = '\0';
 	}
-	result = ft_strjoin(*s1, s2);
-	if (!result)
+	line = ft_strjoin(*line_ptr, buf_pos);
+	if (!line)
 		return (NULL);
-	free(*s1);
-	return (result);
+	free(*line_ptr);
+	return (line);
 }
+// char *eol_check(char **buffer, size_t offset)
+// {
+// 	size_t i;
+// 	char *eol_position;
+
+// 	i = 0;
+// 	while (i < offset)
+// 	{
+// 		if (*(*buffer + i) == '\n')
+// 		{
+// 			eol_position = (*buffer + i);
+// 			return (eol_position);
+// 		}
+// 		i++;
+// 	}
+// 	if (i == offset)
+// 		*buffer = NULL;
+// 	return (NULL);
+// }
+
+// char *strjoin_plus(char **s1, char *s2)
+// {
+// 	char *result;
+// 	size_t len;
+
+// 	if (*s1 == NULL || s2 == NULL)
+// 		return (NULL);
+// 	len = ft_strlen(s1) + ft_strlen(s2);
+// 	result = (char *)malloc(sizeof(char) * (len + 1));
+// 	if (result == NULL)
+// 		return (NULL);
+// 	ft_strcpy(result, s1);
+// 	ft_strcat(result, s2);
+// 	return (result);
+// }
 
 char *ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	s1_prefix_len;
-	size_t	s2_suffix_len;
-	char	*join;
+	size_t s1_prefix_len;
+	size_t s2_suffix_len;
+	char *join;
 
-	s1_prefix_len = ft_strlen(s1);	
-	s2_suffix_len = ft_strlen(s2);	
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	s1_prefix_len = ft_strlen(s1);
+	s2_suffix_len = ft_strlen(s2);
 	join = malloc(s1_prefix_len + s2_suffix_len + 1);
 	if (!join)
 		return (NULL);
@@ -67,9 +98,9 @@ char *ft_strjoin(char const *s1, char const *s2)
 	return (join);
 }
 
-size_t	ft_strlen(const char *s)
+size_t ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t len;
 
 	len = 0;
 	while (s[len])
@@ -77,31 +108,29 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dst_len)
+size_t ft_strlcpy(char *dst, const char *src, size_t dst_len)
 {
-	char		*dst_ptr;
-	const char	*src_ptr;
-	size_t		i;
+	size_t i;
 
-	dst_ptr = dst;
-	src_ptr = src;
+	if (!dst || !src)
+		return (0);
 	i = 0;
-	if (dst_len > 0)
+	while (i < dst_len - 1 && src[i])
 	{
-		while (i < dst_len - 1 && *(src_ptr + i) != '\0')
-		{
-			*(dst_ptr + i) = *(src_ptr + i);
-			i++;
-		}
-		*(dst_ptr + i) = '\0';
+		dst[i] = src[i];
+		i++;
 	}
+	if (dst_len > 0)
+		dst[i] = '\0';
 	return (ft_strlen(src));
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dst_len)
+size_t ft_strlcat(char *dst, const char *src, size_t dst_len)
 {
-	size_t	i;
+	size_t i;
 
+	if (!dst || !src)
+		return (0);
 	i = 0;
 	while (*dst && i < dst_len)
 	{
@@ -111,10 +140,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dst_len)
 	return (ft_strlcpy(dst, src, dst_len - i) + i);
 }
 
-char	*ft_strdup(const char *s)
+char *ft_strdup(const char *s)
 {
-	char	*dup;
-	size_t	str_len;
+	char *dup;
+	size_t str_len;
 
 	str_len = ft_strlen(s) + 1;
 	dup = malloc(str_len);
@@ -126,11 +155,11 @@ char	*ft_strdup(const char *s)
 	return (NULL);
 }
 
-char	*ft_substr(char const *str, size_t start, size_t len)
+char *ft_substr(char const *str, size_t start, size_t len)
 {
-	char	*str_new;
-	size_t	len_new;
-	char	*src;
+	char *str_new;
+	size_t len_new;
+	char *src;
 
 	if (!str)
 		return (NULL);

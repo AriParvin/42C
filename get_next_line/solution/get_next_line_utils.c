@@ -87,67 +87,15 @@ char	*ft_strdup(const char *s)
 	return (NULL);
 }
 
-// char	*ft_substr(char const *s, size_t start, size_t len)
-// {
-// 	char	*new_s;
-// 	size_t	new_len;
-// 	char	*src;
-
-// 	if (!s)
-// 		return (NULL);
-// 	if (ft_strlen(s) < start)
-// 		return (ft_strdup(""));
-// 	src = (char *)s + start;
-// 	if (ft_strlen(src) < len)
-// 		new_len = ft_strlen(src) + 1;
-// 	else
-// 		new_len = len + 1;
-// 	new_s = (char *)malloc(new_len * sizeof(char));
-// 	if (!new_s)
-// 		return (NULL);
-// 	ft_strlcpy(new_s, src, new_len);
-// 	return (new_s);
-// }
-
-
-// char	*ft_substr(char const *s, size_t start, size_t len)
-// {
-// 	unsigned int	i;
-// 	unsigned int	s_len;
-// 	char			*substr;
-
-// 	if (!s)
-// 		return (NULL);
-// 	s_len = ft_strlen(s);
-// 	if (s_len < start)
-// 	{
-// 		if (!(substr = malloc(sizeof(char) * 1)))
-// 			return (NULL);
-// 		substr[0] = '\0';
-// 		return (substr);
-// 	}
-// 	if (!(substr = malloc(sizeof(char) * (len + 1))))
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		substr[i] = s[start + i];
-// 		i++;
-// 	}
-// 	substr[i] = '\0';
-// 	return (substr);
-// }
-
-
 void	*ft_calloc(size_t count, size_t size)
 {
-	// https://git.42l.fr/frdescam/libft/src/branch/master/ft_calloc.c
 	char			*dst;
 	unsigned int	total;
 	unsigned int	i;
 
 	total = count * size;
-	if (!(dst = malloc(total)))
+	dst = malloc(total);
+	if (!dst)
 		return (NULL);
 	i = 0;
 	while (total--)
@@ -158,10 +106,8 @@ void	*ft_calloc(size_t count, size_t size)
 	return ((void *)dst);
 }
 
-
 char	*ft_substr(const char *s, size_t start, size_t len)
 {
-// https://git.hexanyn.fr/42/malloc/-/blob/master/libft/ft_substr.c
 	char	*temp;
 	int		i;
 
@@ -170,12 +116,14 @@ char	*ft_substr(const char *s, size_t start, size_t len)
 		return (NULL);
 	if ((size_t)start > len)
 	{
-		if ((temp = malloc(1)) == NULL)
+		temp = malloc(1);
+		if (temp == NULL)
 			return (NULL);
 		temp[0] = '\0';
 		return (temp);
 	}
-	if ((temp = ft_calloc((len + 1), sizeof(char))) == NULL)
+	temp = ft_calloc((len + 1), sizeof(char));
+	if (temp == NULL)
 		return (NULL);
 	while (start < (unsigned int)len)
 	{
@@ -186,4 +134,34 @@ char	*ft_substr(const char *s, size_t start, size_t len)
 	return (temp);
 }
 
+char	*ft_write_new(char **ptr_line, char *ptr_buff_idx)
+{
+	char	*line;
 
+	if (*ptr_line == NULL)
+	{
+		*ptr_line = malloc(1);
+		if (!*ptr_line)
+			return (NULL);
+		*(ptr_line[0]) = '\0';
+	}
+	line = ft_strjoin(*ptr_line, ptr_buff_idx);
+	if (!line)
+		return (NULL);
+	free(*ptr_line);
+	return (line);
+}
+
+char	*ft_n_idx(char *ptr_buff_idx)
+{
+	int	i;
+
+	i = 0;
+	while (ptr_buff_idx[i] != '\0')
+	{
+		if (ptr_buff_idx[i] == '\n')
+			return (&ptr_buff_idx[i]);
+		i++;
+	}
+	return (NULL);
+}

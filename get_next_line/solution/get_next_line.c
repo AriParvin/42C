@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:05:03 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/24 19:05:07 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/01/24 19:21:23 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,17 @@ char	*get_next_line(int fd)
 			buff_len = read(fd, buffer, BUFFER_SIZE);
 			buffer[buff_len] = '\0';
 			if (buff_len <= 0)
+			{
+				buffer[0] = '\0';
+				n_idx = NULL;
+				buff_idx = NULL;
+				if (buff_len == EOF)
+				{
+					free(line);
+					return(NULL);
+				}
 				return (line);
+			}
 			buff_idx = buffer;
 		}
 		n_idx = ft_n_idx(buff_idx);

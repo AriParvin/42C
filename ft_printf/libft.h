@@ -17,6 +17,21 @@
 # include <stdlib.h>
 # include <stddef.h>
 
+typedef struct s_print
+{
+	va_list	args;
+	int		width;
+	int		precision;
+	int		zero;
+	int		period;
+	int		dash;
+	int		total_len;
+	int		sign;
+	int		is_zero;
+	int		percent;
+	int		space;
+} t_print;
+
 typedef struct s_list
 {
 	void			*content;

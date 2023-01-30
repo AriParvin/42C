@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 12:55:22 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/30 12:58:01 by aparvin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int check_newline(const char *str)
+int	check_newline(const char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == '\n')
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
 			return (1);
 		i++;
-    }
+	}
 	return (0);
 }
 

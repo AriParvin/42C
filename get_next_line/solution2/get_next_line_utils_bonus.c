@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 13:06:39 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/30 13:07:16 by aparvin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
-int		check_newline(const char *str)
+int	check_newline(const char *str)
 {
 	int	i;
 
@@ -42,9 +54,10 @@ char	*join_str(const char *s1, const char *s2)
 
 char	*ft_strdup(const char *s1)
 {
-	char	*s1;
+	char	*s2;
 	int		i;
 
+	s2 = NULL;
 	if (!s2)
 		return (ft_strdup(""));
 	i = 0;

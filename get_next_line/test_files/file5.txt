@@ -1,0 +1,7 @@
+Hello, from the file!
+Second line.
+This is the third line.
+And this the fourth.
+The next line will be empty.
+
+The previous line was empty.

@@ -3,116 +3,114 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hstein <hstein@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:38:23 by hstein            #+#    #+#             */
-/*   Updated: 2023/01/26 19:38:23 by hstein           ###   ########.fr       */
+/*   Created: 2023/02/05 16:10:21 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/05 16:10:23 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "get_next_line.h"
 
-int	ft_magic_a(t_variables *ptr_vars)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	eofflag;
+	char	*join;
+	size_t	len_s1;
+	size_t	len_s2;
+	size_t	i;
 
-	eofflag = 1;
-	ptr_vars->buff_len = read(ptr_vars->fd, ptr_vars->buffer, BUFFER_SIZE);
-	ptr_vars->buffer[ptr_vars->buff_len] = '\0';
-	if (ptr_vars->buff_len <= 0)
-	{
-		eofflag = 0;
-		if (ptr_vars->buff_len == EOF)
-		{
-			free(ptr_vars->line);
-			ptr_vars->line = NULL;
-		}
-		return (eofflag);
-	}
-	ptr_vars->buff_idx = ptr_vars->buffer;
-	return (eofflag);
-}
-
-char	*ft_magic(t_variables *ptr_vars)
-{
-	while (1)
-	{
-		if (!ptr_vars->buff_idx)
-		{
-			if (!ft_magic_a(ptr_vars))
-				return (ptr_vars->line);
-		}
-		ptr_vars->n_idx = ft_n_idx(ptr_vars->buff_idx);
-		if (!ptr_vars->n_idx)
-		{
-			ptr_vars->line = ft_write_new(&(ptr_vars->line), \
-				ptr_vars->buff_idx);
-			if (!ptr_vars->line)
-				return (NULL);
-			ptr_vars->buff_idx = NULL;
-		}
-		if (ptr_vars->n_idx)
-		{
-			ptr_vars->line = ft_write_add(&(ptr_vars->line), \
-				&(ptr_vars->buff_idx), ptr_vars->n_idx);
-			return (ptr_vars->line);
-		}
-	}
-}
-
-char	*ft_n_idx(char *ptr_buff_idx)
-{
-	int	i;
-
-	i = 0;
-	while (ptr_buff_idx[i] != '\0')
-	{
-		if (ptr_buff_idx[i] == '\n')
-			return (&ptr_buff_idx[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_write_new(char **ptr_line, char *ptr_buff_idx)
-{
-	char	*line;
-
-	if (*ptr_line == NULL)
-	{
-		*ptr_line = malloc(1);
-		if (!*ptr_line)
-			return (NULL);
-		*(ptr_line[0]) = '\0';
-	}
-	line = ft_strjoin(*ptr_line, ptr_buff_idx);
-	if (!line)
-	{
-		free(*ptr_line);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	join = malloc(len_s1 + len_s2 + 1);
+	if (!join)
 		return (NULL);
-	}
-	free(*ptr_line);
-	return (line);
+	ft_strlcpy(join, s1, len_s1 + 1);
+	i = 0;
+	while (join[i] && i < (len_s1 + len_s2 + 1))
+		i++;
+	ft_strlcpy(&join[i], s2, (len_s1 + len_s2 + 1) - i);
+	return (join);
 }
 
-char	*ft_write_add(char **ptr_line, char **ptr_buff_idx, char *n_idx)
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	char		*ptr_dst;
+	const char	*ptr_src;
+	size_t		i;
+
+	ptr_dst = dst;
+	ptr_src = src;
+	i = 0;
+	if (dstsize > 0)
+	{
+		while (i < dstsize - 1 && *(ptr_src + i) != '\0')
+		{
+			*(ptr_dst + i) = *(ptr_src + i);
+			i++;
+		}
+		*(ptr_dst + i) = '\0';
+	}
+	return (ft_strlen(src));
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
+	size_t	substr_len;
+	int		s_len;
 
-	substr = ft_substr(*ptr_buff_idx, 0, n_idx - *ptr_buff_idx + 1);
-	if (!substr)
-		return (NULL);
-	*ptr_line = ft_write_new(ptr_line, substr);
-	free(substr);
-	if (!*ptr_line)
-		return (NULL);
-	if (*(n_idx + 1) == '\0')
-		*ptr_buff_idx = NULL;
+	s_len = ft_strlen((char *)s);
+	if (start >= ft_strlen((char *)s))
+	{
+		substr = malloc (sizeof(char));
+		if (!substr)
+			return (NULL);
+		*substr = '\0';
+		return (substr);
+	}
+	if (len <= s_len - start)
+		substr_len = len;
 	else
-		*ptr_buff_idx = n_idx + 1;
-	return (*ptr_line);
+		substr_len = s_len - start;
+	substr = malloc (sizeof(char) * substr_len + 1);
+	if (substr == NULL)
+		return (0);
+	ft_strlcpy(substr, &s[start], substr_len + 1);
+	return (&substr[0]);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char		*ptr_d;
+	const char	*ptr_s;
+	char		*ptr_db;
+	const char	*ptr_sb;
+
+	ptr_d = dest;
+	ptr_s = src;
+	if (ptr_d < ptr_s)
+	{
+		while (n--)
+			*ptr_d++ = *ptr_s++;
+		return (dest);
+	}
+	else if (ptr_d > ptr_s)
+	{
+		ptr_db = dest + (n - 1);
+		ptr_sb = src + (n - 1);
+		while (n--)
+			*ptr_db-- = *ptr_sb--;
+		return (dest);
+	}
+	return (dest);
 }

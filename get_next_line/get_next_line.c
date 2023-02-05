@@ -3,114 +3,124 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hstein <hstein@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:38:15 by hstein            #+#    #+#             */
-/*   Updated: 2023/01/26 19:38:15 by hstein           ###   ########.fr       */
+/*   Created: 2023/02/05 16:07:55 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/05 16:11:47 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	static t_variables	vars;
+	char			*n_idx;
+	char			*line;
+	static char		*stash;
 
-	vars.fd = fd;
-	vars.line = NULL;
-	if (!vars.buff_idx)
+	stash = ft_read(fd, stash);
+	if (!stash || fd < 0)
+		return (NULL);
+	n_idx = ft_n_idx(stash);
+	if (!n_idx)
 	{
-		vars.buff_len = read(vars.fd, vars.buffer, BUFFER_SIZE);
-		vars.buffer[vars.buff_len] = '\0';
-		if (vars.buff_len <= 0)
-			return (NULL);
-		vars.buff_idx = vars.buffer;
+		line = ft_substr(stash, 0, ft_strlen(stash));
+		free(stash);
+		stash = NULL;
+		return (line);
 	}
-	vars.line = ft_magic(&vars);
-	return (vars.line);
+	line = ft_substr(stash, 0, n_idx - stash + 1);
+	if (!line)
+	{
+		free (stash);
+		stash = NULL;
+		return (NULL);
+	}
+	stash = ft_memmove(stash, n_idx + 1, (ft_strlen(n_idx + 1) + 1));
+	return (line);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_n_idx(char *s)
 {
-	char	*join;
-	size_t	len_s1_prefix;
-	size_t	len_s2_suffix;
-	size_t	i;
+	int	i;
 
-	len_s1_prefix = ft_strlen(s1);
-	len_s2_suffix = ft_strlen(s2);
-	join = malloc(len_s1_prefix + len_s2_suffix + 1);
-	if (!join)
-		return (NULL);
-	ft_strlcpy(join, s1, len_s1_prefix + 1);
 	i = 0;
-	while (join[i] && i < (len_s1_prefix + len_s2_suffix + 1))
+	while (s[i] != '\0')
+	{
+		if (s[i] == '\n')
+			return (&s[i]);
 		i++;
-	ft_strlcpy(&join[i], s2, (len_s1_prefix + len_s2_suffix + 1) - i);
-	return (join);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	char		*ptr_dst;
-	const char	*ptr_src;
-	size_t		i;
-
-	ptr_dst = dst;
-	ptr_src = src;
-	i = 0;
-	if (dstsize > 0)
-	{
-		while (i < dstsize - 1 && *(ptr_src + i) != '\0')
-		{
-			*(ptr_dst + i) = *(ptr_src + i);
-			i++;
-		}
-		*(ptr_dst + i) = '\0';
 	}
-	return (ft_strlen(src));
+	return (NULL);
 }
 
-char	*ft_substr(char const *s, size_t start, size_t len)
+char	*ft_write_new(char **ptr_stash, char *ptr_buff)
 {
-	char	*new_s;
-	size_t	new_len;
-	char	*src;
-	char	*emptystr;
+	char	*str;
 
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
+	if (*ptr_stash == NULL)
 	{
-		emptystr = malloc(1);
-		if (!emptystr)
+		*ptr_stash = malloc(1);
+		if (!*ptr_stash)
 			return (NULL);
-		*emptystr = '\0';
-		return (emptystr);
+		**ptr_stash = '\0';
 	}
-	src = (char *)s + start;
-	if (ft_strlen(src) < len)
-		new_len = ft_strlen(src) + 1;
-	else
-		new_len = len + 1;
-	new_s = (char *)malloc(new_len * sizeof(char));
-	if (!new_s)
+	str = ft_strjoin(*ptr_stash, ptr_buff);
+	if (!str)
+	{
+		free(*ptr_stash);
+		*ptr_stash = NULL;
 		return (NULL);
-	ft_strlcpy(new_s, src, new_len);
-	return (new_s);
+	}
+	free(*ptr_stash);
+	*ptr_stash = NULL;
+	return (str);
+}
+
+int	ft_read_check(char **stash_ptr, int buff_len)
+{
+	if (buff_len == -1)
+	{
+		free(*stash_ptr);
+		*stash_ptr = NULL;
+		return (-1);
+	}
+	if (buff_len == 0)
+	{
+		if (*stash_ptr && (*stash_ptr)[0] == '\0')
+		{
+			free(*stash_ptr);
+			*stash_ptr = NULL;
+			return (0);
+		}
+		return (0);
+	}
+	return (1);
+}
+
+char	*ft_read(int fd, char *stash)
+{
+	int		buff_len;
+	int		read_check;
+	char	*buffer;	
+
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	while (1)
+	{
+		buff_len = read(fd, buffer, BUFFER_SIZE);
+		read_check = ft_read_check(&stash, buff_len);
+		if (read_check == -1)
+			break ;
+		if (read_check == 0)
+			break ;
+		buffer[buff_len] = '\0';
+		stash = ft_write_new(&stash, buffer);
+		if (!stash)
+			return (NULL);
+		if (ft_n_idx(stash) || buff_len < BUFFER_SIZE)
+			break ;
+	}
+	free (buffer);
+	buffer = NULL;
+	return (stash);
 }

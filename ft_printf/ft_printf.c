@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:53:33 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 17:46:28 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/13 18:15:47 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_printf(const char *format, ...)
 	va_list			args;
 	int				count;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	count = 0;
-	if (ft_printf(0))
-		return (NULL);
 	while (*format)
 	{
 		if (*format == '%')

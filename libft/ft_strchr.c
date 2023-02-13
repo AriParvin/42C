@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 11:13:34 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 09:55:55 by aparvin          ###   ########.fr       */
+/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/03 11:39:51 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memcpy(void	*dst, void	*src, size_t len)
-{	
-	char	*csrc;
-	char	*cdst;
-
-	if (!dst)
-		return (NULL);
-	csrc = (char *)src;
-	cdst = (char *)dst;
-	while (len--)
-		(*cdst++) = (*csrc++);
-	return (dst);
+char	*ft_strchr(const char	*s, int c)
+{
+	while ((char)c != *s)
+	{
+		if (!*s)
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }
 /*
-int	main ()
+int main(void)
 {
-	char src[] = "FooBar";
-	char dst[20];
+	const char* s = "teste";
+	int c = 't' + 256;
 
-	memcpy(dst, src, strlen(src) + 1);
-	ft_memcpy(dst, src, strlen(src) + 1);
-
-	if(strcmp(dst,src) == 0)
-		printf("OK\n");
-	else
-		printf("KO\n");	
+	printf("SRC:\t%s\n", s);
+	printf("SL:\t%p\n", strchr(s,c));
+	printf("42:\t%p\n", ft_strchr(s, c));
 }
 */

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:47:13 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 15:52:42 by aparvin          ###   ########.fr       */
+/*   Created: 2023/01/03 16:53:35 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/04 16:43:49 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_parse_ptr(void *ptr, int *count)
+t_list	*ft_lstlast(t_list *lst)
 {
-	ft_putstr("0x", count);
-	ft_puthex((unsigned long)ptr, count, 'x');
+	if (lst == NULL)
+		return (0);
+	while (lst)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
 }

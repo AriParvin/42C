@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:48:24 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 15:48:29 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/13 17:36:20 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(void)
  	ft_printf	("NULL: %s!\n", NULL);
 	//printf		(" %p %p\n", 0, 0);
 	ft_printf		(" %p %p\n", 0, 0);
+	ft_printf(0);
 
 
 	return (0);

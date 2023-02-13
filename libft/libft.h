@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:48:28 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 10:10:42 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/01/03 16:45:24 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,17 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-typedef struct s_print
-{
-	va_list	args;
-	int		width;
-	int		precision;
-	int		zero;
-	int		period;
-	int		dash;
-	int		total_len;
-	int		sign;
-	int		is_zero;
-	int		percent;
-	int		space;
-} t_print;
-
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
-int			ft_ispunct(int c);
 
 int			ft_tolower(int c);
 int			ft_toupper(int c);
@@ -60,7 +44,6 @@ char		*ft_strndup(const char *s1, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 
 size_t		ft_strlen(const char *s);
-size_t		ft_strlen_2(char **s);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strstr(const char *haystack, const char *needle);
@@ -93,5 +76,14 @@ void		ft_putnbr_fd(int n, int fd);
 
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
-void		ft_printf(const char *format, ...);
+
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+int			ft_lstsize(t_list *lst);
+t_list		*ft_lstlast(t_list *lst);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 #endif

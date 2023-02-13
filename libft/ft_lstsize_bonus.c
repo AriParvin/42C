@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 13:04:41 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/13 13:18:07 by aparvin          ###   ########.fr       */
+/*   Created: 2023/01/03 16:46:40 by aparvin           #+#    #+#             */
+/*   Updated: 2023/01/04 16:52:48 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
 {
-	if (s && fd > 0)
+	int	i;
+
+	i = 0;
+	while (lst)
 	{
-		while (*s)
-		{
-			write(fd, s, 1);
-			s++;
-		}
+		lst = lst->next;
+		i++;
 	}
+	return (i);
 }
-/*
-int main()
-{
-	char *s = "FooBar";
-	int fd = 1;
-	ft_putstr_fd(s, fd);
-}
-*/

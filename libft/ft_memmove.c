@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:16:32 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 16:14:04 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/01/03 12:23:38 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,27 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char		*d;
-	const char	*s;
-	const char	*ls;
-	char		*ld;
+	size_t	i;
 
-	d = dst;
-	s = src;
-	if (d < s)
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	if ((size_t)dst - (size_t)src < len)
 	{
-		while (len--)
-			*d++ = *s++;
+		i = len - 1;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i--;
+		}
 	}
 	else
 	{
-		ls = s + (len - 1);
-		ld = d + (len - 1);
-		while (len--)
-			*ld-- = *ls--;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
 	return (dst);
 }

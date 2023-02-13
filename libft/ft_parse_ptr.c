@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_parse_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 11:24:26 by aparvin           #+#    #+#             */
-/*   Updated: 2022/11/30 15:40:07 by aparvin          ###   ########.fr       */
+/*   Created: 2023/02/13 15:47:13 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/13 15:52:42 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <ctype.h>
 
-int	ft_isdigit(int c)
+#include "ft_printf.h"
+
+void	ft_parse_ptr(void *ptr, int *count)
 {
-	return (c >= 48 && c <= 57);
+	ft_putstr("0x", count);
+	ft_puthex((unsigned long)ptr, count, 'x');
 }

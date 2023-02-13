@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnlbu_valgrind.c                                   :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:10:21 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/07 11:09:40 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:33:17 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnlb_valgrind.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin_bonus(char const *s1, char const *s2)
 {
@@ -19,8 +19,8 @@ char	*ft_strjoin_bonus(char const *s1, char const *s2)
 	size_t	len_s2;
 	size_t	i;
 
-	len_s1 = ft_strlen_bonus(s1);
-	len_s2 = ft_strlen_bonus(s2);
+	len_s1 = ft_strlen_b(s1);
+	len_s2 = ft_strlen_b(s2);
 	join = malloc(len_s1 + len_s2 + 1);
 	if (!join)
 		return (NULL);
@@ -32,7 +32,7 @@ char	*ft_strjoin_bonus(char const *s1, char const *s2)
 	return (join);
 }
 
-size_t	ft_strlen_bonus(const char *s)
+size_t	ft_strlen_b(const char *s)
 {
 	size_t	len;
 
@@ -60,7 +60,7 @@ size_t	ft_strlcpy_bonus(char *dst, const char *src, size_t dstsize)
 		}
 		*(ptr_dst + i) = '\0';
 	}
-	return (ft_strlen_bonus(src));
+	return (ft_strlen_b(src));
 }
 
 char	*ft_substr_bonus(char const *s, unsigned int start, size_t len)
@@ -69,8 +69,8 @@ char	*ft_substr_bonus(char const *s, unsigned int start, size_t len)
 	size_t	substr_len;
 	int		s_len;
 
-	s_len = ft_strlen_bonus((char *)s);
-	if (start >= ft_strlen_bonus((char *)s))
+	s_len = ft_strlen_b((char *)s);
+	if (start >= ft_strlen_b((char *)s))
 	{
 		substr = malloc (sizeof(char));
 		if (!substr)

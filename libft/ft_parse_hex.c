@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_parse_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 17:45:33 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/05 15:26:46 by aparvin          ###   ########.fr       */
+/*   Created: 2023/02/13 15:49:48 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/13 15:50:03 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	ft_parse_hex(unsigned int hex, int *count, char c)
 {
-	t_list	*newlst;
-	t_list	*newobj;
-
-	if (!lst || !f || !del)
-		return (NULL);
-	newlst = NULL;
-	while (lst)
-	{
-		newobj = ft_lstnew(f(lst->content));
-		if (!newobj)
-		{
-			ft_lstclear(&newlst, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&newlst, newobj);
-		lst = lst->next;
-	}
-	return (newlst);
+	if (c == 'x')
+		ft_puthex(hex, count, c);
+	if (c == 'X')
+		ft_puthex(hex, count, c);
 }

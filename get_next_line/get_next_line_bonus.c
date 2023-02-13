@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnlb_valgrind.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:07:55 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/07 11:07:22 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:30:00 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnlb_valgrind.h"
+#include "get_next_line_bonus.h"
 #define MAX_FD 42
 
 char	*get_next_line_bonus(int fd)
@@ -25,12 +25,12 @@ char	*get_next_line_bonus(int fd)
 	n_idx = ft_n_idx_bonus(stash_arr[fd]);
 	if (!n_idx)
 	{
-		line = ft_substr_bonus(stash_arr[fd], 0, ft_strlen_bonus(stash_arr[fd]));
+		line = ft_substr_b(stash_arr[fd], 0, ft_strlen_b(stash_arr[fd]));
 		free(stash_arr[fd]);
 		stash_arr[fd] = NULL;
 		return (line);
 	}
-	line = ft_substr_bonus(stash_arr[fd], 0, n_idx - stash_arr[fd] + 1);
+	line = ft_substr_b(stash_arr[fd], 0, n_idx - stash_arr[fd] + 1);
 	if (!line)
 	{
 		free (stash_arr[fd]);
@@ -38,7 +38,7 @@ char	*get_next_line_bonus(int fd)
 		return (NULL);
 	}
 	stash_arr[fd] = ft_memmove_bonus(stash_arr[fd], n_idx + 1, \
-			(ft_strlen_bonus(n_idx + 1) + 1));
+			(ft_strlen_b(n_idx + 1) + 1));
 	return (line);
 }
 

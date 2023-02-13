@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 16:53:35 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/04 16:43:49 by aparvin          ###   ########.fr       */
+/*   Created: 2023/02/13 15:55:40 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/13 16:00:05 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_putstr(char *s, int *count)
 {
-	if (lst == NULL)
-		return (0);
-	while (lst)
+	int		i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (lst->next == NULL)
-			return (lst);
-		lst = lst->next;
+		ft_putchar(s[i], count);
+		i++;
 	}
-	return (lst);
 }

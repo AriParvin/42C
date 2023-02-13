@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_parse_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:26:03 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 17:29:50 by aparvin          ###   ########.fr       */
+/*   Created: 2023/02/13 15:49:03 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/13 15:49:13 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "ft_printf.h"
+
+void	ft_parse_char(char c, int *count)
 {
-	return (c >= 32 && c < 127);
+	ft_putchar(c, count);
 }

@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_parse_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 11:39:51 by aparvin          ###   ########.fr       */
+/*   Created: 2023/02/13 15:50:23 by aparvin           #+#    #+#             */
+/*   Updated: 2023/02/13 15:50:35 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "ft_printf.h"
 
-char	*ft_strchr(const char	*s, int c)
+void	ft_parse_int(int nbr, int *count)
 {
-	while ((char)c != *s)
+	if (nbr == -2147483648)
 	{
-		if (!*s)
-			return (0);
-		s++;
-	}
-	return ((char *)s);
+		ft_putstr("-2147483648", count);
+		return ;
+	}	
+	ft_putnbr(nbr, count);
 }
-/*
-int main(void)
-{
-	const char* s = "teste";
-	int c = 't' + 256;
-
-	printf("SRC:\t%s\n", s);
-	printf("SL:\t%p\n", strchr(s,c));
-	printf("42:\t%p\n", ft_strchr(s, c));
-}
-*/

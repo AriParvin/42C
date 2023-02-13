@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:10:21 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 19:38:06 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/05 16:10:23 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-char	*ft_strjoin_bonus(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;
 	size_t	len_s1;
 	size_t	len_s2;
 	size_t	i;
 
-	len_s1 = ft_strlen_b(s1);
-	len_s2 = ft_strlen_b(s2);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
 	join = malloc(len_s1 + len_s2 + 1);
 	if (!join)
 		return (NULL);
-	ft_strlcpy_bonus(join, s1, len_s1 + 1);
+	ft_strlcpy(join, s1, len_s1 + 1);
 	i = 0;
 	while (join[i] && i < (len_s1 + len_s2 + 1))
 		i++;
-	ft_strlcpy_bonus(&join[i], s2, (len_s1 + len_s2 + 1) - i);
+	ft_strlcpy(&join[i], s2, (len_s1 + len_s2 + 1) - i);
 	return (join);
 }
 
-size_t	ft_strlen_b(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
@@ -42,7 +42,7 @@ size_t	ft_strlen_b(const char *s)
 	return (len);
 }
 
-size_t	ft_strlcpy_bonus(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	char		*ptr_dst;
 	const char	*ptr_src;
@@ -60,17 +60,17 @@ size_t	ft_strlcpy_bonus(char *dst, const char *src, size_t dstsize)
 		}
 		*(ptr_dst + i) = '\0';
 	}
-	return (ft_strlen_b(src));
+	return (ft_strlen(src));
 }
 
-char	*ft_substr_b(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	substr_len;
 	int		s_len;
 
-	s_len = ft_strlen_b((char *)s);
-	if (start >= ft_strlen_b((char *)s))
+	s_len = ft_strlen((char *)s);
+	if (start >= ft_strlen((char *)s))
 	{
 		substr = malloc (sizeof(char));
 		if (!substr)
@@ -85,11 +85,11 @@ char	*ft_substr_b(char const *s, unsigned int start, size_t len)
 	substr = malloc (sizeof(char) * substr_len + 1);
 	if (substr == NULL)
 		return (0);
-	ft_strlcpy_bonus(substr, &s[start], substr_len + 1);
+	ft_strlcpy(substr, &s[start], substr_len + 1);
 	return (&substr[0]);
 }
 
-void	*ft_memmove_bonus(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	char		*ptr_d;
 	const char	*ptr_s;

@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:07:55 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 16:30:00 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/05 16:11:47 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#define MAX_FD 1024
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
 	char			*n_idx;
 	char			*line;
-	static char		*stash_arr[MAX_FD];
+	static char		*stash;
 
-	stash_arr[fd] = ft_read_bonus(fd, stash_arr[fd]);
-	if (!stash_arr[fd] || fd < 0)
+	stash = ft_read(fd, stash);
+	if (!stash || fd < 0)
 		return (NULL);
-	n_idx = ft_n_idx_bonus(stash_arr[fd]);
+	n_idx = ft_n_idx(stash);
 	if (!n_idx)
 	{
-		line = ft_substr_b(stash_arr[fd], 0, ft_strlen_b(stash_arr[fd]));
-		free(stash_arr[fd]);
-		stash_arr[fd] = NULL;
+		line = ft_substr(stash, 0, ft_strlen(stash));
+		free(stash);
+		stash = NULL;
 		return (line);
 	}
-	line = ft_substr_b(stash_arr[fd], 0, n_idx - stash_arr[fd] + 1);
+	line = ft_substr(stash, 0, n_idx - stash + 1);
 	if (!line)
 	{
-		free (stash_arr[fd]);
-		stash_arr[fd] = NULL;
+		free (stash);
+		stash = NULL;
 		return (NULL);
 	}
-	stash_arr[fd] = ft_memmove_bonus(stash_arr[fd], n_idx + 1, \
-			(ft_strlen_b(n_idx + 1) + 1));
+	stash = ft_memmove(stash, n_idx + 1, (ft_strlen(n_idx + 1) + 1));
 	return (line);
 }
 
-char	*ft_n_idx_bonus(char *s)
+char	*ft_n_idx(char *s)
 {
 	int	i;
 
@@ -56,7 +54,7 @@ char	*ft_n_idx_bonus(char *s)
 	return (NULL);
 }
 
-char	*ft_write_new_bonus(char **ptr_stash, char *ptr_buff)
+char	*ft_write_new(char **ptr_stash, char *ptr_buff)
 {
 	char	*str;
 
@@ -67,7 +65,7 @@ char	*ft_write_new_bonus(char **ptr_stash, char *ptr_buff)
 			return (NULL);
 		**ptr_stash = '\0';
 	}
-	str = ft_strjoin_bonus(*ptr_stash, ptr_buff);
+	str = ft_strjoin(*ptr_stash, ptr_buff);
 	if (!str)
 	{
 		free(*ptr_stash);
@@ -79,7 +77,7 @@ char	*ft_write_new_bonus(char **ptr_stash, char *ptr_buff)
 	return (str);
 }
 
-int	ft_read_check_bonus(char **stash_ptr, int buff_len)
+int	ft_read_check(char **stash_ptr, int buff_len)
 {
 	if (buff_len == -1)
 	{
@@ -100,7 +98,7 @@ int	ft_read_check_bonus(char **stash_ptr, int buff_len)
 	return (1);
 }
 
-char	*ft_read_bonus(int fd, char *stash)
+char	*ft_read(int fd, char *stash)
 {
 	int		buff_len;
 	int		read_check;
@@ -110,16 +108,16 @@ char	*ft_read_bonus(int fd, char *stash)
 	while (1)
 	{
 		buff_len = read(fd, buffer, BUFFER_SIZE);
-		read_check = ft_read_check_bonus(&stash, buff_len);
+		read_check = ft_read_check(&stash, buff_len);
 		if (read_check == -1)
 			break ;
 		if (read_check == 0)
 			break ;
 		buffer[buff_len] = '\0';
-		stash = ft_write_new_bonus(&stash, buffer);
+		stash = ft_write_new(&stash, buffer);
 		if (!stash)
 			return (NULL);
-		if (ft_n_idx_bonus(stash) || buff_len < BUFFER_SIZE)
+		if (ft_n_idx(stash) || buff_len < BUFFER_SIZE)
 			break ;
 	}
 	free (buffer);

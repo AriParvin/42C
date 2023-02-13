@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:47:13 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/13 18:20:25 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/02/13 18:53:52 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_parse_ptr(void *ptr, int *count)
 {
 	if (!ptr)
-		ft_putstr("(null)", count);
+		ft_putstr("(nil)", count);
 	else
 	{
 		ft_putstr("0x", count);

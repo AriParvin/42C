@@ -6,7 +6,7 @@
 #    By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 09:21:07 by aparvin           #+#    #+#              #
-#    Updated: 2023/03/07 14:53:49 by aparvin          ###   ########.fr        #
+#    Updated: 2023/03/08 12:23:46 by aparvin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,3 +67,22 @@ $(NAME_PUSH_SWAP) : $(LIB_PATH)/$(LIB) $(OBJ)
 		@rm -rf push_swap
 		@$(COMP) -g $(H_FLAG) $(OBJ) $(LLIB_FLAG) -o $@
 		@echo "Compilation of $(NAME_PUSH_SWAP): \033[1;32mOK\033[m"
+
+lib:
+		@make -sC	$(LIB_PATH)
+
+$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c $(HDR)
+		@mkdir -p	$(OBJ_PATH) $(TOOLS_PATH) $(SHARED_PATH)
+		@$(COMP) -g $(FLAGS) $(H_FLAG) -g -o $@ -c $<
+
+clean:
+		@rm -rf $(OBJ_PATH)
+		@make clean -C $(Lib_PATH)
+		@echo "\033[l;33m>> all objects files deleted \033[0m"
+
+fclean: clean
+		@rm -rf $(NAME_PUSH_SWAP)
+		@make fclean -C $(LIB_PATH)
+		@echo "\033[0;31m>> $(NAME_PUSH_SWAP) && all objects are deleted.\033[0m"
+
+re:		fclean all

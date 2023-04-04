@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 08:52:21 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/04 09:04:06 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:17:12 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	doubles_checker(t_stack **stack)
 			free(array);
 			return ;
 		}
-		i++
+		i++;
 	}
 	free(array);
 }

@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:17:07 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/03 12:36:25 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:20:03 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		do_commands(char *line, t_stack **first, t_stack **second)
 {
-		if (!(ft_strcmp(line, "sa")))
+	if (!(ft_strcmp(line, "sa")))
 		return (sab(first));
 	if (!(ft_strcmp(line, "sb")))
 		return (sab(second));
@@ -39,18 +39,18 @@ int		do_commands(char *line, t_stack **first, t_stack **second)
 	return (1);
 }
 
-int		return_errors(char ** line, t_stack **stack1, t_stack **stack2)
+int		return_errors(char **line, t_stack **stack1, t_stack **stack2)
 {
 	ft_strdel(line);
 	if (*stack1)
 		stack_del(stack1);
 	if (*stack2)
 		stack_del(stack2);
-	write(2, "ERROR\n", 6;
+	write(2, "Error\n", 6);
 	return (0);
 }
 
-int	stack_is_sorted(t_stack *first)
+int		stack_is_sorted(t_stack *first)
 {
 	t_stack *stack;
 
@@ -66,7 +66,7 @@ int	stack_is_sorted(t_stack *first)
 
 void	print_checker_res(t_stack **first, t_stack **second)
 {
-	if (!(stack_is_sorted(*first)) && !(*second)
+	if (!(stack_is_sorted(*first)) && !(*second))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
@@ -76,17 +76,17 @@ void	print_checker_res(t_stack **first, t_stack **second)
 		stack_del(second);
 }
 
-int		main(int ac, char **av)
+int		main(int argc, char **argv)
 {
-	t_stack	*first;
-	t_stack	*second;
-	char	line;
+	t_stack *first;
+	t_stack *second;
+	char	*line;
 
-	if (ac < 2)
+	if (argc < 2)
 		return (0);
-	if (!(first = copy_args_in_stack(ac, av)))
+	if (!(first = copy_args_in_stack(argc, argv)))
 	{
-		write(2, "ERROR\n", 6);
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	second = NULL;

@@ -6,34 +6,23 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:09:55 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/05 16:09:56 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:06:16 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42 
-# endif
-
-# include <stdio.h>
+# define BUFF_SIZE 512
 # include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <stddef.h>
-# include <ctype.h>
 # include <fcntl.h>
 
-char			*get_next_line(int fd);
-char			*ft_n_idx(char *ptr_buff_idx);
-char			*ft_read(int fd, char *stash);
-char			*ft_write_new(char **ptr_stash, char *ptr_buff_idx);
-char			*ft_strjoin(char const *s1, char const *s2);
-int				ft_check(char **ptr_stash, int buff_len);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-void			*ft_memmove(void *dest, const void *src, size_t n);
-size_t			ft_strlen(const char *s);
-size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
+typedef struct		s_line
+{
+	char			*data;
+	int				fd;
+	struct s_line	*next;
+}					t_line;
+int					get_next_line(const int fd, char **line);
 
 #endif

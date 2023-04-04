@@ -6,121 +6,97 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:07:55 by aparvin           #+#    #+#             */
-/*   Updated: 2023/02/05 16:11:47 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:07:06 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-char	*get_next_line(int fd)
+t_line	*new_tail(int fd)
 {
-	char			*n_idx;
-	char			*line;
-	static char		*stash;
+	t_line	*new;
 
-	stash = ft_read(fd, stash);
-	if (!stash || fd < 0)
-		return (NULL);
-	n_idx = ft_n_idx(stash);
-	if (!n_idx)
-	{
-		line = ft_substr(stash, 0, ft_strlen(stash));
-		free(stash);
-		stash = NULL;
-		return (line);
-	}
-	line = ft_substr(stash, 0, n_idx - stash + 1);
-	if (!line)
-	{
-		free (stash);
-		stash = NULL;
-		return (NULL);
-	}
-	stash = ft_memmove(stash, n_idx + 1, (ft_strlen(n_idx + 1) + 1));
-	return (line);
+	new = (t_line*)malloc(sizeof(t_line));
+	new->data = ft_strnew(0);
+	new->fd = fd;
+	new->next = NULL;
+	return (new);
 }
 
-char	*ft_n_idx(char *s)
+t_line	*fd_finder(t_line *tail, int fd)
 {
-	int	i;
+	t_line	*tmp;
 
-	i = 0;
-	while (s[i] != '\0')
+	tmp = tail;
+	while (tmp)
 	{
-		if (s[i] == '\n')
-			return (&s[i]);
-		i++;
+		if (tmp->fd == fd)
+			return (tmp);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }
 
-char	*ft_write_new(char **ptr_stash, char *ptr_buff)
+int		str_finder(char **s, char **line, int key)
 {
+	int		i;
 	char	*str;
 
-	if (*ptr_stash == NULL)
+	i = -1;
+	str = *s;
+	while (str[++i])
 	{
-		*ptr_stash = malloc(1);
-		if (!*ptr_stash)
-			return (NULL);
-		**ptr_stash = '\0';
+		if (str[i] == '\n')
+		{
+			*line = ft_strsub(str, 0, i);
+			*s = ft_memmove(*s, &str[i + 1], ft_strlen(&str[i + 1]) + 1);
+			return (-1);
+		}
 	}
-	str = ft_strjoin(*ptr_stash, ptr_buff);
-	if (!str)
+	if (str[i] == '\0' && str[i - 1] != '\n' && key == 0)
 	{
-		free(*ptr_stash);
-		*ptr_stash = NULL;
-		return (NULL);
-	}
-	free(*ptr_stash);
-	*ptr_stash = NULL;
-	return (str);
-}
-
-int	ft_read_check(char **stash_ptr, int buff_len)
-{
-	if (buff_len == -1)
-	{
-		free(*stash_ptr);
-		*stash_ptr = NULL;
+		*line = ft_strsub(str, 0, i);
+		*s = ft_memmove(*s, &str[i], ft_strlen(&str[i]) + 1);
 		return (-1);
 	}
-	if (buff_len == 0)
-	{
-		if (*stash_ptr && (*stash_ptr)[0] == '\0')
-		{
-			free(*stash_ptr);
-			*stash_ptr = NULL;
-			return (0);
-		}
-		return (0);
-	}
-	return (1);
+	return (0);
 }
 
-char	*ft_read(int fd, char *stash)
+t_line	*tmp_fd_in(t_line *tmp, t_line *tail, int fd)
 {
-	int		buff_len;
-	int		read_check;
-	char	*buffer;	
+	tmp = tail;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new_tail(fd);
+	tmp = tmp->next;
+	return (tmp);
+}
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (1)
+int		get_next_line(const int fd, char **line)
+{
+	static t_line	*tail;
+	t_line			*tmp;
+	char			*del;
+	char			buf[BUFF_SIZE + 1];
+	int				key;
+
+	if (tail == NULL)
+		tail = new_tail(fd);
+	if ((tmp = fd_finder(tail, fd)) == NULL)
+		tmp = tmp_fd_in(tmp, tail, fd);
+	ft_bzero(buf, BUFF_SIZE + 1);
+	while ((key = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		buff_len = read(fd, buffer, BUFFER_SIZE);
-		read_check = ft_read_check(&stash, buff_len);
-		if (read_check == -1)
-			break ;
-		if (read_check == 0)
-			break ;
-		buffer[buff_len] = '\0';
-		stash = ft_write_new(&stash, buffer);
-		if (!stash)
-			return (NULL);
-		if (ft_n_idx(stash) || buff_len < BUFFER_SIZE)
-			break ;
+		del = tmp->data;
+		tmp->data = ft_strjoin(tmp->data, buf);
+		ft_strdel(&del);
+		ft_bzero(buf, BUFF_SIZE + 1);
+		if (str_finder(&(tmp->data), line, key) == -1)
+			return (1);
 	}
-	free (buffer);
-	buffer = NULL;
-	return (stash);
+	if (key == -1 || (key == 0 && tmp->data[0] == '\0'))
+		return (key = key == -1 ? -1 : 0);
+	if (str_finder(&(tmp->data), line, key) == -1)
+		return (1);
+	return (0);
 }

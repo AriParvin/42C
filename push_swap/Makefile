@@ -1,65 +1,77 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/04 08:35:48 by aparvin           #+#    #+#              #
-#    Updated: 2023/04/04 08:36:17 by aparvin          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra
+NAME	= push_swap
 
-CHECK_NAME = checker
-PUSH_NAME = push_swap
-FLAGS = -Wall -Wextra -Werror
-INC = -Iincludes/ -I$(LIB_DIR)/includes
+SRC_PATH = src/
+OBJ_PATH = obj/
 
-CHECK_SRC_NAME = checker.c stack_creator.c quick_sort.c commands.c\
-commands_2.c printer.c comb.c comb_2.c divide_stacks.c helpers.c\
-push_back.c swap_elements.c swappers.c error_check.c printer_helper.c
+SRC		= main.c \
+		input_check.c input_check_utils.c \
+		initialization.c \
+		stack.c \
+		swap.c push.c rotate.c reverse_rotate.c \
+		sort_tiny.c sort.c \
+		position.c cost.c do_move.c \
+		utils.c
+SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+OBJ		= $(SRC:.c=.o)
+OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+INCS	= -I ./includes/
 
-CHECK_OBJ_NAME = $(CHECK_SRC_NAME:.c=.o)
-CHECK_OBJ = $(addprefix $(OBJ_DIR),$(CHECK_OBJ_NAME))
+all: $(OBJ_PATH) $(NAME) 
 
-PUSH_SRC_NAME = push_swap.c stack_creator.c quick_sort.c commands.c\
-commands_2.c printer.c comb.c comb_2.c divide_stacks.c helpers.c\
-push_back.c swap_elements.c swappers.c error_check.c printer_helper.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
 
-PUSH_OBJ_NAME = $(PUSH_SRC_NAME:.c=.o)
-PUSH_OBJ = $(addprefix $(OBJ_DIR),$(PUSH_OBJ_NAME))
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
 
-LIB_DIR = libft/
-SRC_DIR = srcs/
-OBJ_DIR = objs/
-
-all: $(CHECK_NAME) $(PUSH_NAME)
-
-$(CHECK_NAME): $(CHECK_OBJ)
-	@make -C $(LIB_DIR) --silent
-	@gcc -o $(CHECK_NAME) $(CHECK_OBJ) -L $(LIB_DIR) -lft
-	@echo "##### checker compiling finished! #####"
-
-$(PUSH_NAME): $(PUSH_OBJ)
-	@make -C $(LIB_DIR) --silent
-	@gcc -o $(PUSH_NAME) $(PUSH_OBJ) -L $(LIB_DIR) -lft
-	@echo "##### push_swap compiling finished! #####"
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
-	@echo "##### Creating" [ $@ ] " #####"
-	@gcc $(FLAGS) -o $@ -c $< $(INC)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@make -C $(LIB_DIR) clean  --silent
-	@rm -f $(CHECK_OBJ) $(PUSH_OBJ)
-	@echo "##### Removed object files #####"
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@make -C $(LIB_DIR) fclean  --silent
-	@rm -f $(CHECK_NAME) $(PUSH_NAME)
-	@echo "##### Removed binary files #####"
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test2:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-100 -n 2))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test3:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-100 -n 3))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test5:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 5))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test100:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 100))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test500:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 500))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test1000:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 1000))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+
+.PHONY: all clean fclean re test2 test3 test5 test100 test500 test1000

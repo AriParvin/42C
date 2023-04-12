@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:00:52 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/06 12:00:54 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:51:43 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* fill_stack_values:
 *	Fills stack_a with the provided values.
-*	If the values are out of integer range, prints and error and exits the program.
+*	If the values are out of integer range, prints an error and exits the program.
 */
 t_stack	*fill_stack_values(int ac, char **av)
 {

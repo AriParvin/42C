@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:03:20 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/06 12:03:21 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/05/09 10:19:19 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void	exit_error(t_stack **stack_a, t_stack **stack_b)
 long int	ft_atoi(const char *str)
 {
 	long int	nb;
-	int			isneg;
+	int			sign;
 	int			i;
 
 	nb = 0;
-	isneg = 1;
+	sign = 1;
 	i = 0;
 	if (str[i] == '+')
 		i++;
 	else if (str[i] == '-')
 	{
-		isneg *= -1;
+		sign *= -1;
 		i++;
 	}
 	while (is_digit(str[i]))
@@ -68,7 +68,7 @@ long int	ft_atoi(const char *str)
 		nb = (nb * 10) + (str[i] - '0');
 		i++;
 	}
-	return (nb * isneg);
+	return (nb * sign);
 }
 
 /* ft_putstr:

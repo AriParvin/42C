@@ -1,44 +1,47 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/25 15:50:04 by aparvin           #+#    #+#              #
-#    Updated: 2023/05/25 15:50:12 by aparvin          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SERVER = server
 
-SOURCES = server.c client.c
-OBJECTS = $(SOURCES:.c=.o)
+CLIENT = client
 
-CC = gcc
+SERVER_B = server_bonus
+
+CLIENT_B = client_bonus
+
+LIBFT = ./libft/libft.a
+
+HEADER = inc/minitalk.h
+
+HEADER_B = inc/*_bonus.h
+
 CFLAGS = -Wall -Wextra -Werror
 
-all: server client
+all: $(LIBFT) $(CLIENT) $(SERVER) $(HEADER)
 
-bonus: server client
+$(SERVER): src/server.c $(HEADER)
+	@gcc src/server.c $(LIBFT) -o $@
+	@echo $@ ready
 
-server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+$(CLIENT): src/client.c $(HEADER)
+	@gcc $(CFLAGS) src/client.c $(LIBFT) -o $@
+	@echo $@ ready
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+$(SERVER_B): src/server_bonus.c $(HEADER_B)
+	@gcc src/server_bonus.c $(LIBFT) -o $@
+	@echo $@ ready
+$(CLIENT_B): src/client_bonus.c $(HEADER_B)
+	@gcc src/client_bonus.c $(LIBFT) -o $@
+	@echo $@ ready
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
-
-libft:
-	make -C libft
+$(LIBFT):
+	@make -C./libft
+bonus: $(LIBFT) $(SERVER_B) $(CLIENT_B) $(HEADER_B)
 
 clean:
-	rm -f $(OBJECTS)
-	make -C libft clean
-	
+	@make clean -C ./libft
+
 fclean: clean
-	rm -f server client libft/libft.a
+	rm -rf $(SERVER) $(CLIENT) $(SERVER_B) $(CLIENT_B)
+	make fclean -C ./libft
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all re clean fclean bonus

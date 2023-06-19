@@ -6,16 +6,12 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:03:10 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/06 12:03:11 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:12:26 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* swap:
-*	Swaps the top 2 elements of a stack.
-*	Does nothing if there is only one or no elements.
-*/
 static void	swap(t_stack *stack)
 {
 	int	tmp;
@@ -30,31 +26,18 @@ static void	swap(t_stack *stack)
 	stack->next->index = tmp;
 }
 
-/* do_sa:
-*	Swaps the top 2 elements of stack a.
-*	Prints "sa" to the standard output.
-*/
 void	do_sa(t_stack **stack_a)
 {
 	swap(*stack_a);
 	ft_putstr("sa\n");
 }
 
-/* do_sb:
-*	Swaps the top 2 elements of stack b.
-*	Prints "sb" to the standard output.
-*/
 void	do_sb(t_stack **stack_b)
 {
 	swap(*stack_b);
 	ft_putstr("sb\n");
 }
 
-/* do_ss:
-*	Swaps the top 2 elements of stack a and the top 2 elements
-*	of stack b.
-*	Prints "ss" to the standard output.
-*/
 void	do_ss(t_stack **stack_a, t_stack **stack_b)
 {
 	swap(*stack_a);

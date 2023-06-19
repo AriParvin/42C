@@ -6,27 +6,27 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:47:45 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/03 13:09:37 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:20:37 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		sab(t_stack **head)
+int	sab(t_stack **head)
 {
-	t_stack *stack;
-	
+	t_stack	*stack;
+
 	stack = *head;
 	if (stack && stack->next)
-		ft_swap(&stack->num, &stack->next-num);
+		ft_swap(&stack->num, &stack->next - num);
 	return (0);
 }
 
-int		pab(t_stack **head_to, t_stack **head_from)
+int	pab(t_stack **head_to, t_stack **head_from)
 {
-	t_stack *tmp;
-	t_stack *to;
-	t_stack *from;
+	t_stack	*tmp;
+	t_stack	*to;
+	t_stack	*from;
 
 	to = *head_to;
 	from = *head_from;
@@ -49,11 +49,11 @@ int		pab(t_stack **head_to, t_stack **head_from)
 	return (0);
 }
 
-int		rab(t_stack **head)
+int	rab(t_stack **head)
 {
-	t_stack *tmp_first;
-	t_stack *tmp_last;
-	t_stack *stack;
+	t_stack	*tmp_first;
+	t_stack	*tmp_last;
+	t_stack	*stack;
 
 	stack = *head;
 	if (!(stack && stack->next))
@@ -71,11 +71,11 @@ int		rab(t_stack **head)
 	return (0);
 }
 
-int		rrab(t_stack **head)
+int	rrab(t_stack **head)
 {
-	t_stack *tmp_last;
-	t_stack *previous;
-	t_stack *stack;
+	t_stack	*tmp_last;
+	t_stack	*previous;
+	t_stack	*stack;
 
 	stack = *head;
 	if (!(stack && stack->next))

@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:59 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/03 12:46:09 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:21:01 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	comb_9(t_stack **stack, t_com **result)
 	else
 		(*result)->final = add_to_string((*result)->final, "rb\nsb\n");
 }
-

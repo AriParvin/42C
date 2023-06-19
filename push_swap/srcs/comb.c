@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:51 by aparvin           #+#    #+#             */
-/*   Updated: 2023/04/03 12:45:35 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:22:57 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	comb_5(t_stack **stack, t_com **result)
 	sab(stack);
 	if ((*stack)->diff == 1)
 		(*result)->final = add_to_string((*result)->final,
-			"sa\nra\nsa\nrra\nsa\n");
+				"sa\nra\nsa\nrra\nsa\n");
 	else
 		(*result)->final = add_to_string((*result)->final,
-			"sb\nrb\nsb\nrrb\nsb\n");
+				"sb\nrb\nsb\nrrb\nsb\n");
 }

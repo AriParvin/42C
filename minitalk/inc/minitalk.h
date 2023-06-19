@@ -6,7 +6,7 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:02:11 by aparvin           #+#    #+#             */
-/*   Updated: 2023/06/05 15:03:51 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:40:01 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,9 @@
 
 # include <unistd.h>
 # include <signal.h>
+# include <stdio.h>
+# include <signal.h>
+# include <stdlib.h>
+# include <sys/types.h>
 
 #endif

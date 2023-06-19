@@ -6,50 +6,60 @@
 /*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:17:31 by aparvin           #+#    #+#             */
-/*   Updated: 2023/06/05 15:37:53 by aparvin          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:58:32 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
 #include "../libft/libft.h"
 
-void	ft_handler(int signo, siginfo_t *siginfo, void *unused)
-{
-	static unsigned char	bukva = 0;
-	static int				count = 0;
+char    g_buffer[8 + 1];
 
-	(void)unused;
-	if (signo == SIGUSR1)
-		bukva |= (1 << count);
-	count++;
-	if (count == 8)
-	{
-		ft_putchar_fd(bukva, 1);
-		count = 0;
-		bukva = 0;
-		if (kill(siginfo->si_pid, SIGUSR1) == -1)
-			ft_putstr_fd("Error signal", 1);
-	}
+void    sig_action(int signal, siginfo_t *info, void *blubb)
+{
+        int                             i;
+        static int              bit_count;
+        unsigned char   c;
+
+        (void) blubb;
+        if (signal == SIGUSR1 || signal == SIGUSR2)
+        {
+                i = 7;
+                if (signal == SIGUSR1)
+                        g_buffer[bit_count++] = '1';
+                else if (signal == SIGUSR2)
+                        g_buffer[bit_count++] = '0';
+                if (bit_count == 8)
+                {
+                        g_buffer[bit_count] = '\0';
+                        c = 0;
+                        i = -1;
+                        while (++i < 8)
+                                c |= (g_buffer[i] - '0') << i;
+                        ft_putchar_fd(c, 1);
+                        bit_count = 0;
+                }
+                kill(info->si_pid, SIGUSR1);
+        }
 }
 
-int	main(void)
+int     main(int argc, char *argv[])
 {
-	struct sigaction	act;
+        struct sigaction        sa;
 
-	act.sa_sigaction = &ft_handler;
-	act.sa_flags = SA_SIGINFO;
-	sigemptyset(&act.sa_mask);
-	sigaddset(&act.sa_mask, SIGUSR1);
-	sigaddset(&act.sa_mask, SIGUSR2);
-	if ((sigaction(SIGUSR1, &act, 0)) == -1)
-		ft_putstr_fd("Error sigaction\n", 1);
-	if ((sigaction(SIGUSR2, &act, 0)) == -1)
-		ft_putstr_fd("Error sigaction\n", 1);
-	ft_putstr_fd("Server started successfully and now waiting for client\n", 1);
-	ft_putstr_fd("PID is: ", 1);
-	ft_putnbr_fd(getpid(), 1);
-	write(1, "\n", 1);
-	while (1)
-		pause();
-	return (0);
+        (void) argc;
+        (void) argv;
+        ft_putnbr_fd(getpid(), 1);
+        write (1, "\n", 1);
+        sa.sa_sigaction = &sig_action;
+        sigemptyset(&sa.sa_mask);
+        sa.sa_flags = SA_SIGINFO;
+        sigaction(SIGUSR1, &sa, NULL);
+        sigaction(SIGUSR2, &sa, NULL);
+        while (1)
+        {
+                pause();
+        }
+        return (0);
 }
+

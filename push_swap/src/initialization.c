@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+/* fill_stack_values:
+		Fills A with av.
+		If av is out of int range, print error and exit.
+*/
+
 t_stack	*fill_stack_values(int ac, char **av)
 {
 	t_stack		*stack_a;
@@ -34,6 +39,11 @@ t_stack	*fill_stack_values(int ac, char **av)
 	}
 	return (stack_a);
 }
+
+/* assign_index:
+		Assigns index to each value in A.
+		Indices are assigned from highest to lowest.
+*/
 
 void	assign_index(t_stack *stack_a, int stack_size)
 {

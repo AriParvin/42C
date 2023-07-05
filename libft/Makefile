@@ -6,7 +6,7 @@
 #    By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 20:28:07 by aparvin           #+#    #+#              #
-#    Updated: 2023/01/04 16:00:41 by aparvin          ###   ########.fr        #
+#    Updated: 2023/04/04 11:37:28 by aparvin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,10 @@ SOURCES	=	ft_isalpha.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
-			ft_putnbr_fd.c
+			ft_putnbr_fd.c \
+			ft_strequ.c \
+			ft_strdel.c \
+			ft_strsplit.c
 
 BONUS =		ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \

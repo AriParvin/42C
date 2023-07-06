@@ -25,8 +25,8 @@ void	print_bugs(t_game *game)
 	char	*string;
 
 	string = ft_itoa(game->collected + 1);
-	mlx_delete_image(game->mlx, game->img->bug_nbr);
-	game->img->bug_nbr = mlx_put_string(game->mlx, string,
+	mlx_delete_image(game->mlx, game->img->bug);
+	game->img->bug = mlx_put_string(game->mlx, string,
 					175, game->height * 64 - 44);
 	free(string);
 }

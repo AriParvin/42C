@@ -22,7 +22,7 @@ t_img	*load_wall_texture(mlx_t *mlx, t_img *img)
 	if (!wall)
 		error_message("PNG LOAD FAILURE");
 	img->wall = mlx_texture_to_image(mlx, wall);
-	if (!img->bush)
+	if (!img->wall)
 		error_message("TEXTURE TO IMAGE FAILURE");
 	mlx_delete_texture(wall);
 	return (img);
@@ -49,8 +49,8 @@ t_img	*load_exit_on(mlx_t *mlx, t_img *img)
 	exit = mlx_load_png("./sprites/exit_on.png");
 	if (!exit)
 		error_message("PNG LOAD FAILURE");
-	img->exit = mlx_texture_to_image(mlx, exit);
-	if (!img->exit)
+	img->exit_on = mlx_texture_to_image(mlx, exit);
+	if (!img->exit_on)
 		error_message("TEXTURE TO IMAGE FAILURE");
 	mlx_delete_texture(exit);
 	return (img);
@@ -63,8 +63,8 @@ t_img	*load_exit_off(mlx_t *mlx, t_img *img)
 	exit = mlx_load_png("./sprites/exit_off.png");
 	if (!exit)
 		error_message("PNG LOAD FAILURE");
-	img->exit = mlx_texture_to_image(mlx, exit);
-	if (!img->exit)
+	img->exit_off = mlx_texture_to_image(mlx, exit);
+	if (!img->exit_off)
 		error_message("TEXTURE TO IMAGE FAILURE");
 	mlx_delete_texture(exit);
 	return (img);

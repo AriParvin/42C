@@ -56,7 +56,7 @@ void    render_map(t_game *data)
         x = 0;
         while (x < data->width)
         {
-            image_select(data, y, x)
+            image_select(data, y, x);
             x++;
         }
         y++;

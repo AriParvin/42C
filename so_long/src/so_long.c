@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	put_enemies(game);
 	string_to_screen(game);
 	mlx_key_hook(game->mlx, move_hook, game);
-	mlx_loop_hook(game->mlx, enemy_patrol, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	return (EXIT_SUCCESS);

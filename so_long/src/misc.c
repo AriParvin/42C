@@ -12,7 +12,7 @@ void	check_game_status(t_game *game)
 	print_moves(game);
 	if (game->collected == game->bugs)
 	{
-		if (mlx_image_to_window(game->mlx, game-img->exit_on,
+		if (mlx_image_to_window(game->mlx, game->img->exit_on,
 						game->exit_x * PIXELS, game->exit_y * PIXELS) < 0)
 			error_message("IMAGE TO WINDOW FAIL");
 		game->grid[game->exit_y][game->exit_x] = '0';

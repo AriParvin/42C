@@ -4,16 +4,16 @@ static void		load_frog_textures(t_game *game)
 {
 	game->frog_N = mlx_load_png("./sprites/frog_N.png");
 	if (!game->frog_N)
-		error_message("ERROR LOADING SPRITE");
+		error_message("SPRITE LOAD FAILURE");
 	game->frog_S = mlx_load_png("./sprites/frog_S.png");
 	if (!game->frog_S)
-		error_message("ERROR LOADING SPRITE");
+		error_message("SPRITE LOAD FAILURE");
 	game->frog_W = mlx_load_png("./sprites/frog_W.png");
 	if (!game->frog_W)
-		error_message("ERROR LOADING SPRITE");
+		error_message("SPRITE LOAD FAILURE");
 	game->frog_E = mlx_load_png("./sprites/frog_E.png");
 	if (!game->frog_E)
-		error_message("ERROR LOADING SPRITE");
+		error_message("SPRITE LOAD FAILURE");
 }
 
 t_game			*init_game_struct(char **grid)
@@ -22,7 +22,7 @@ t_game			*init_game_struct(char **grid)
 
 	game = (t_game *)ft_calloc(1, sizeof(t_game));
 	if (!game)
-		error_message("ERROR MALLOC FAIL");
+		error_message("MALLOC FAIL");
 	game->width = ft_strlen(grid[0]);
 	game->height = row_count(grid);
 	game->grid = grid;

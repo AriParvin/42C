@@ -12,13 +12,6 @@
 
 #include "push_swap.h"
 
-/* do_rev_rotate_both:
-		Reverse rotate A and B until one is in position.
-		Cost is negative since positions are in bottom half of stack.
-		Cost increases as stacks are rotated.
-		When stack reaches 0, it has reached rot limit and top pos is correct.
-*/
-
 static void	do_rev_rotate_both(t_stack **a, t_stack **b,
 												int *cost_a, int *cost_b)
 {
@@ -30,13 +23,6 @@ static void	do_rev_rotate_both(t_stack **a, t_stack **b,
 	}
 }
 
-/* do_rotate_both:
-		Rotate A and B until one of them is in position.
-		Cost is positive since both pos are in the top half of stack.
-		Cost is decreased as stacks are rotated.
-		When stack reaches 0, it has reached rot limit and top pos is correct.
-*/
-
 static void	do_rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
@@ -47,11 +33,6 @@ static void	do_rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 	}
 }
 
-/* do_rotate_a:
-		Rotate stack A until in position.
-		If cost negative = reverse rotate.
-		If cost positive = regular rotate.
-*/
 static void	do_rotate_a(t_stack **a, int *cost)
 {
 	while (*cost)
@@ -69,12 +50,6 @@ static void	do_rotate_a(t_stack **a, int *cost)
 	}
 }
 
-/* do_rotate_b:
-		Rotate stack B until in position.
-		If cost negative = reverse rotate.
-		If cost positive = regular rotate.
-*/
-
 static void	do_rotate_b(t_stack **b, int *cost)
 {
 	while (*cost)
@@ -91,11 +66,6 @@ static void	do_rotate_b(t_stack **b, int *cost)
 		}
 	}
 }
-
-/* do_move:
-		Determine moves for correct position of B to A
-		If cost A == cost B, rotate or rev rotate both.
-*/
 
 void	do_move(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {

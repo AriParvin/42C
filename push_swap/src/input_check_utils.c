@@ -22,10 +22,6 @@ int	is_sign(char c)
 	return (c == '+' || c == '-');
 }
 
-/* nbstr_cmp:
-		Check if strings of numbers match.
-*/
-
 int	nbstr_cmp(const char *s1, const char *s2)
 {
 	int	i;

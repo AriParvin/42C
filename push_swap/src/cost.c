@@ -12,14 +12,6 @@
 
 #include "push_swap.h"
 
-/* get_cost:
-		Calculate cost of moving element from B to A.
-		cost_b = cost of getting element to top of B.
-		cost_a = cost of getting element to correct A pos.
-		Top half of stack = cost positive.
-		Bottom half of stack = cost negative.
-*/
-
 void	get_cost(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp_a;
@@ -42,10 +34,6 @@ void	get_cost(t_stack **stack_a, t_stack **stack_b)
 		tmp_b = tmp_b->next;
 	}
 }
-
-/* do_cheapest_move:
-		Finds element in B that is the cheapest to move to A
-*/
 
 void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 {

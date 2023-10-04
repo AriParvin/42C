@@ -12,10 +12,6 @@
 
 #include "push_swap.h"
 
-/* get_position:
-		Assign position to elements of stack
-*/
-
 static void	get_position(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -30,10 +26,6 @@ static void	get_position(t_stack **stack)
 		i++;
 	}
 }
-
-/*
-	Get position with lowest index.
-*/
 
 int	get_lowest_index_position(t_stack **stack)
 {
@@ -56,10 +48,6 @@ int	get_lowest_index_position(t_stack **stack)
 	}
 	return (lowest_pos);
 }
-
-/*
-	Pick best target position in A for element in B.
-*/
 
 static int	get_target(t_stack **a, int b_idx,
 								int target_idx, int target_pos)
@@ -90,11 +78,6 @@ static int	get_target(t_stack **a, int b_idx,
 	}
 	return (target_pos);
 }
-
-/*
-	Assign target position in A for each element in A.
-	Position will be used to calculate cost of move.
-*/
 
 void	get_target_position(t_stack **a, t_stack **b)
 {

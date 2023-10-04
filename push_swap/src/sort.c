@@ -12,10 +12,6 @@
 
 #include "push_swap.h"
 
-/* push_all_save_three:
-		Push elements in ascending order from a to b.
-		The three last values remain in a.
-*/
 static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 {
 	int	stack_size;
@@ -43,9 +39,6 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-/* shift_stack:
-		Shift stack a until lowest value is at the top.
-*/
 static void	shift_stack(t_stack **stack_a)
 {
 	int	lowest_pos;
@@ -70,13 +63,6 @@ static void	shift_stack(t_stack **stack_a)
 		}
 	}
 }
-/*sort:
-		If stack is larger than three use this.
-		Push all but three elements to B.
-		Sort the three elements left in A.
-		Calculate the cheapest moves.
-		Shift elements until A is in order.
-*/
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {

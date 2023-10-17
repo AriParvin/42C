@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 17:40:09 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:09:54 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:53:24 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:53:25 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

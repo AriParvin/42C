@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 17:19:09 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/23 20:37:11 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 14:03:29 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 14:03:30 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

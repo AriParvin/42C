@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 17:24:01 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/23 20:36:46 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 14:02:38 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 14:02:40 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

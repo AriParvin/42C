@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 21:30:30 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:08:00 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:53:35 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:53:36 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

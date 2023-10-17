@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 19:58:28 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:11:35 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:51:29 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:51:30 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 19:33:15 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/04 04:30:13 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:54:44 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:54:46 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

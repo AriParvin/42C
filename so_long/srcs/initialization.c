@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 17:34:10 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/23 20:36:11 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 14:01:29 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 14:01:59 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

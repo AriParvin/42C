@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 17:17:24 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:09:32 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:54:29 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:54:30 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:37:39 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 22:12:19 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:56:33 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:56:34 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

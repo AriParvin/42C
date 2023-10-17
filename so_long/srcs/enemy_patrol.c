@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_patrol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 16:39:53 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/23 20:35:15 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 14:01:08 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 14:01:14 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

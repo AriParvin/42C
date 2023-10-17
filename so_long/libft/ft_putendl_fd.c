@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 19:43:19 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:11:06 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:51:10 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:51:16 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 17:23:40 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/23 20:36:07 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 14:02:12 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 14:02:14 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/22 16:29:44 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:08:18 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:55:23 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:55:24 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

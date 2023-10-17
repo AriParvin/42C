@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 17:57:13 by bsengeze          #+#    #+#             */
-/*   Updated: 2023/07/02 21:10:21 by bsengeze         ###   ########.fr       */
+/*   Created: 2023/10/17 13:50:50 by aparvin           #+#    #+#             */
+/*   Updated: 2023/10/17 13:50:53 by aparvin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

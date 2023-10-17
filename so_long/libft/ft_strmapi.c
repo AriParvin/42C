@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 12:38:26 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 23:16:06 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/24 17:17:24 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 21:09:32 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
+// Applies the function ’f’ to each character of the
+// string ’s’, and passing its index as first argument
+// to create a new string (with malloc(3)) resulting
+// from successive applications of ’f’.
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*str;
-	size_t	i;
+	unsigned int	i;
+	char			*ret;
 
-	str = ft_strdup(s);
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i])
+		i++;
+	ret = malloc(sizeof(char) * (i + 1));
+	if (!ret)
+		return (0);
+	i = 0;
+	while (s[i])
 	{
-		str[i] = (*f)(i, str[i]);
+		ret[i] = f(i, s[i]);
 		i++;
 	}
-	return (str);
+	ret[i] = 0;
+	return (ret);
 }

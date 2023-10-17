@@ -3,48 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:54:32 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/09 15:23:13 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/20 16:39:29 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/20 16:40:07 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
-	size_t	bytes;
-	char	*p;
 
-	bytes = nmemb * size;
-	ptr = malloc(bytes);
-	p = (char *)ptr;
-	if (ptr == NULL)
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	while (bytes--)
-		*p++ = 0;
+	ft_bzero(ptr, count * size);
 	return (ptr);
 }
-/*
-int	main()
-{
-	int *ptr = (int *)calloc(5, sizeof(int));
-	int *ptr2 = (int *)ft_calloc(5, sizeof(int));
-
-	if(ptr == NULL)
-		return(printf("MEMORY COULD NOT BE ALLOCATED\n")  
-	else
-	{
-		while (*ptr2++)
-		{
-			printf("\t%d\n", ptr2[i]);
-			free(ptr2);
-		}
-	}
-	return (0);
-}
-TEST NOT FINISHED
-*/

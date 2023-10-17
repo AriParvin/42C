@@ -3,49 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 13:39:14 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/17 22:23:37 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/22 16:29:44 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 21:08:18 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "libft.h"
 
-static int	ft_matchset(char c, char const *set)
+// Allocates (with malloc(3)) and returns a copy of
+// ’s1’ with the characters specified in ’set’ removed
+// from the beginning and the end of the string.
+static int	ft_isset(char c, const char *set)
 {
-	size_t	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
+	while (*set)
+		if (c == *set++)
 			return (1);
-		i++;
-	}
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	char	*out;
-	size_t	i;
-	size_t	start;
-	size_t	end;
+	char	*ret;
+	char	*start;
+	char	*end;
 
-	start = 0;
-	while (s1[start] && ft_matchset(s1[start], set))
+	if (!s1 || !set)
+		return (0);
+	start = (char *)s1;
+	end = start + ft_strlen(s1);
+	while (*start && ft_isset(*start, set))
 		start++;
-	end = ft_strlen(s1);
-	while (end > start && ft_matchset(s1[end - 1], set))
+	while (start < end && ft_isset(*(end - 1), set))
 		end--;
-	out = (char *)malloc(sizeof(*s1) * (end - start + 1));
-	if (!out)
-		return (NULL);
-	i = 0;
-	while (start < end)
-		out[i++] = s1[start++];
-	out[i] = 0;
-	return (out);
+	ret = ft_substr(start, 0, end - start);
+	return (ret);
 }

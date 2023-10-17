@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 12:54:04 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 13:24:46 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/24 17:40:09 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 21:09:54 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
+// Applies the function ’f’ on each character of
+// the string passed as argument, passing its index
+// as first argument. Each character is passed by
+// address to ’f’ to be modified if necessary.
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
-	int	ii;
+	unsigned int	i;
 
 	i = 0;
-	ii = 0;
-	if (s != NULL && f != NULL)
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		i = ft_strlen(s);
-		while (ii < i)
-		{
-			(*f)(ii, s);
-			s++;
-			ii++;
-		}
+		f(i, &s[i]);
+		i++;
 	}
 }

@@ -3,50 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 14:16:32 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 12:23:38 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/13 17:37:34 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/16 20:07:30 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
+	char	*destm;
+	char	*srcm;
 	size_t	i;
 
-	if (!dst && !src)
-		return (0);
 	i = 0;
-	if ((size_t)dst - (size_t)src < len)
+	if (!dest && !src)
+		return (0);
+	destm = (char *)dest;
+	srcm = (char *)src;
+	if (destm > srcm)
 	{
-		i = len - 1;
-		while (i < len)
-		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i--;
-		}
+		while (n--)
+			destm[n] = srcm[n];
 	}
 	else
 	{
-		while (i < len)
+		while (n--)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			destm[i] = srcm[i];
 			i++;
 		}
 	}
-	return (dst);
+	return (destm);
 }
+
 /*
-int main()
+int main(void)
 {
-	char src[7] = "FooBar";
-	char src2[7] = "FooBar";
-	printf("SRC:\t%s\n", src);
-	memmove(src, src, strlen(src)+1);
-	ft_memmove(src2, src2, strlen(src2)+1);
-	printf("SL:\t%s\n42:\t%s\n", src, src2);
+	char src[] = "Hello world!";
+	char dest[] = "0101";
+	
+	memmove(dest, src, 5);
+	printf("After memmove dest is :    %s, source is : %s\n", dest, src);
+	printf("After memmove dest address is :   %p\n", &dest);
+	ft_memmove(dest, src, 5);
+	printf("After ft_memmove dest is : %s, source is : %s\n", dest, src);
+	printf("After ft_memmove dest address is :%p\n", &dest);
+	return 0;
 }
 */

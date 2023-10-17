@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 13:26:22 by aparvin           #+#    #+#             */
-/*   Updated: 2023/06/28 13:26:27 by aparvin          ###   ########.fr       */
+/*   Created: 2023/03/27 16:37:39 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 22:12:19 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 1
-
-# include <stddef.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
-size_t		gnl_strlen(const char *s);
-int			gnl_strchr(char *s, char c);
-char		*gnl_strjoin(char *s1, char *s2);
-void		*gnl_calloc(size_t count, size_t size);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
-char		*get_next_line(int fd);
+char	*get_next_line(int fd);
+char	*ft_update_remaining(char *rem_txt);
+size_t	gnl_strlen(char *s);
+char	*gnl_strchr(char *s, int c);
+char	*gnl_strjoin(char *rem_txt, char *buffer);
 
 #endif

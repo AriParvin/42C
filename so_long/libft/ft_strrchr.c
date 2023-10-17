@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 12:06:55 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/18 19:01:17 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/22 22:13:00 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (s[i])
-		i++;
-	while (i >= 0)
+	len = 0;
+	while (*s)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i--;
+		s++;
+		len++;
 	}
-	return (0);
+	while (len != -1)
+	{
+		if (*s != (char)c)
+		{
+			s--;
+			len--;
+		}
+		else
+			return ((char *)s);
+	}
+	return (NULL);
 }
+/*
+int main(void)
+{
+    char *test = "Berkcancox";
+    char c = 'c';
+    char *rest = ft_strrchr(test, c);
+    printf("Rest of the string is: %s ",rest);
+}
+*/

@@ -3,81 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 13:26:41 by aparvin           #+#    #+#             */
-/*   Updated: 2023/06/28 13:26:45 by aparvin          ###   ########.fr       */
+/*   Created: 2023/03/25 18:57:57 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 22:15:23 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stddef.h>
 
-size_t	gnl_strlen(const char *s)
+size_t	gnl_strlen(char *s)
 {
 	size_t	i;
 
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0')
+	while (s[i])
 		i++;
 	return (i);
 }
 
-int	gnl_strchr(char *s, char c)
+char	*gnl_strchr(char *s, int c)
 {
-	int		i;
-
-	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0' && s[i] != c)
-		i++;
-	if (s[i] == c)
-		return (i);
+	while (*s && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
 	return (0);
 }
 
-char	*gnl_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *rem_txt, char *buffer)
 {
-	int		i;
-	int		j;
-	char	*new;
+	size_t	i;
+	size_t	j;
+	char	*mal;
 
 	i = 0;
 	j = 0;
-	if (!s1)
-		s1 = gnl_calloc(1, 1);
-	if (!s1 || !s2)
-		return (free(s1), NULL);
-	new = (char *)malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
-	if (!new)
-		return (free(s1), NULL);
-	while (s1[i])
+	mal = malloc(sizeof(char) * (gnl_strlen(rem_txt) + gnl_strlen(buffer)) + 1);
+	if (!mal)
+		return (0);
+	if (rem_txt)
 	{
-		new[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-		new[i++] = s2[j++];
-	new[i] = '\0';
-	return (free(s1), new);
-}
-
-void	*gnl_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-	size_t	i;
-
-	i = 0;
-	ptr = malloc (count * size);
-	if (ptr == NULL)
-		return (NULL);
-	while (i < (count * size))
-	{
-		(*(unsigned char *)(ptr + i)) = 0;
+		while (rem_txt[i])
+		{
+			mal[i] = rem_txt[i];
 			i++;
+		}
+		free(rem_txt);
 	}
-	return (ptr);
+	while (buffer[j])
+	{
+		mal[i + j] = buffer[j];
+		j++;
+	}
+	mal[i + j] = '\0';
+	return (mal);
 }

@@ -3,27 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:38:18 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/01 10:56:21 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/18 17:44:13 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/18 17:49:21 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <ctype.h>
+
+#include "libft.h"
 
 int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c -= 32);
+	while (c >= 'a' && c <= 'z')
+	{
+		c -= 32;
+	}
 	return (c);
 }
-/*
-int main()
-{
-	int c = 'a';
-	printf("SRC:\t%c\n", c);	
-	printf("42:\t%c\n", ft_toupper(c));	
-	printf("SL:\t%c\n", toupper(c));	
-}
-*/

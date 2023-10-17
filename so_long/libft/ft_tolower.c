@@ -3,28 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:38:18 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/01 10:48:10 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/18 17:51:29 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/18 17:52:02 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <ctype.h>
+
+#include "libft.h"
 
 int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c += 32);
+	while (c >= 'A' && c <= 'Z')
+	{
+		c += 32;
+	}
 	return (c);
 }
-/*
-int main()
-{
-	int c = 'A';	
-	
-	printf("SRC:\t%c\n", c);
-	printf("42:\t%c\n", ft_tolower(c));
-	printf("SL:\t%c\n", tolower(c));
-}
-*/

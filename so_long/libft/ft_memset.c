@@ -3,28 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 13:10:39 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 15:44:34 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/12 21:24:24 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/13 16:07:32 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-#include <string.h>
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	void	*t;
+	size_t			i;
+	unsigned char	*str;
 
-	t = *&s;
-	if (n != 0)
+	str = s;
+	i = 0;
+	while (n > i)
 	{
-		while (n > 0)
-		{
-			*(unsigned char *)s = (unsigned char)c;
-			s++;
-			n--;
-		}
+		str [i] = c;
+		i++;
 	}
-	return (t);
-}	
+	return (s);
+}
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*str;
+
+	str = strdup("helloooooo world");
+	if (!ft_memset((void *)str, 'A', 5))
+	{
+		printf("An error occurred in ft_memset()\n");
+	}
+	else
+	{
+		printf("%s\n", str);
+	}
+}
+*/

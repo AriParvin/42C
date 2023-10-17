@@ -3,13 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 11:09:44 by aparvin           #+#    #+#             */
-/*   Updated: 2022/11/30 15:28:05 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/12 16:55:17 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/12 19:11:08 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 int	ft_isalpha(int c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }
+/*
+#include <ctype.h>
+#include <stdio.h>
+int main(void)
+{
+printf("ft_isalpha result is : %d \n", ft_isalpha(75));
+printf("isalpha result is : %d \n", isalpha(75));
+}
+*/

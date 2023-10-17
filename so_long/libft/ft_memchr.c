@@ -3,42 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 09:35:54 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/12 09:36:00 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/18 23:10:44 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/19 01:32:13 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *str, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char		*s;
+	unsigned char	*cstr;
+	unsigned char	cc;
 
-	s = str;
-	while (n--)
+	cstr = (unsigned char *)s;
+	cc = (unsigned char)c;
+	while (n > 0)
 	{
-		if (*s == (unsigned char)c)
-			return ((void *)s);
-		s++;
+		if (*cstr == cc)
+			return (cstr);
+		cstr++;
+		n--;
 	}
-	return (NULL);
+	return (0);
 }
 /*
-int main()
+int main(void)
 {
-	char *str = "FooBar";
-	const char c = 'B';
-	char *res1;
-	char *res2;
-	
-	res1 = memchr(str, c, strlen(str));
-	res2 = ft_memchr(str, c, strlen(str));
+	printf("my funct result is : %p", ft_memchr("ABCD", 'A', 5));
+    printf("lib funct result is : %p", memchr("ABCD", 'A', 5));
 
-	printf("\nSRC:\t%s RNG: %ld TARGET: %c\n\n", str, strlen(str), c);
-	printf("42:\t%c found @ position %ld\n", c, (res1 - str));
-	printf("SL:\t%c found @ position %ld\n", c, (res2 - str));
 }
 */

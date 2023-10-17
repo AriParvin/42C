@@ -3,42 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 09:59:10 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/17 19:22:49 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/20 17:21:33 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/24 17:10:54 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	int		len;
-	char	*d;
+	char	*s1_mal;
+	size_t	len;
 
-	len = ft_strlen(s) + 1;
-	d = malloc(len);
-	if (d == NULL)
-		return (NULL);
-	ft_strlcpy(d, s, len);
-	return (d);
-	free(d);
+	len = ft_strlen(s1);
+	s1_mal = malloc(sizeof(char) * len + 1);
+	if (!s1_mal)
+		return (0);
+	ft_strlcpy(s1_mal, s1, len + 1);
+	return (s1_mal);
 }
-/*
-int main()
-{
-	char *src = "Foobar";
-	char *dst1;
-	char *dst2;
-
-	dst1 = strdup(src);
-	dst2 = ft_strdup(src);
-
-	printf("SRC:\t%s\nSL:\t%s\n",src, dst1);
-	printf("42:\t%s\n", dst2);
-}	
-*/

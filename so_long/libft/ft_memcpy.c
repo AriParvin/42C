@@ -3,56 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 11:13:34 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 12:19:50 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/13 17:09:39 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/16 18:01:50 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
-	if (!dst && !src)
-		return (0);
 	i = 0;
-	while (i < n)
+	if (!dest && !src)
+		return (0);
+	while (n > i)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	return (dst);
+	return (dest);
 }
-
 /*
-void	*ft_memcpy(void	*dst, void	*src, size_t len)
-{	
-	char	*csrc;
-	char	*cdst;
+#include <stdio.h>
+#include <string.h>
 
-	if (!dst || dst == NULL)
-		return (NULL);
-	csrc = (char *)src;
-	cdst = (char *)dst;
-	while (len--)
-		(*cdst++) = (*csrc++);
-	return (dst);
-}
-int	main ()
+int	main(void)
 {
-	char src[] = "FooBar";
-	char dst[20];
+	char	*src;
+	char	*dest;
 
-	memcpy(dst, src, strlen(src) + 1);
-	ft_memcpy(dst, src, strlen(src) + 1);
-
-	if(strcmp(dst,src) == 0)
-		printf("OK\n");
+	src = strdup("hello world");
+	dest = strdup("heyyy");
+	if (!ft_memcpy((void *)dest, (const void *)src, 3))
+	{
+		printf("An error occurred in ft_memcpy()\n");
+	}
 	else
-		printf("KO\n");	
+	{
+		printf("source is : %s\n dest is : %s\n", src, dest);
+	}
 }
 */

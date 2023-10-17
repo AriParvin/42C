@@ -3,79 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:40:24 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 15:28:13 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/20 19:21:55 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 21:07:21 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
-/*
-static size_t	ft_len(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	size_t	ii;
-
-	while (s[i] && i < start)
-		i++;
-	while (s[i] && ii < len)
-	{
-		i++;
-		ii++;
-	}
-	return (ii);
-}
-
+// Allocates (with malloc(3)) and returns a substring
+// from the string ’s’.
+// The substring begins at index ’start’ and is of
+// maximum size ’len’.
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*p;
 	size_t	i;
-	size_t	size;
-	char	*dest;
 
-	if (!s)
-		return (NULL);
-	size = ft_len(s, start, len);
-	dest = malloc(sizeof(char) * (size + 1));
-	if (!dest)
-		return (NULL);
 	i = 0;
-	while (i < size && s[start + i])
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	p = malloc(sizeof(char) * len + 1);
+	if (!p)
+		return (0);
+	while (len > i)
 	{
-		dest[i] = s[start + i];
+		p[i] = s[start + i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	p[i] = 0;
+	return (p);
+}
+/*
+int main(void)
+{
+
+printf("= %s",ft_substr("hola", 4294967295, 0));
 }
 */
-char	*ft_substr(const char *str, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*substr;
-
-	if (!str || start >= ft_strlen(str))
-	{
-		substr = malloc(sizeof(char));
-		if (!substr)
-			return (0);
-		*substr = '\0';
-		return (substr);
-	}
-	if (start + len > ft_strlen(str))
-		len = ft_strlen(str) - start;
-	substr = malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (0);
-	i = 0;
-	while (i < len && str[start + i])
-	{
-		substr[i] = str[start + i];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}

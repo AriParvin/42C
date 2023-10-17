@@ -3,142 +3,161 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 13:25:17 by aparvin           #+#    #+#             */
-/*   Updated: 2023/06/28 13:25:24 by aparvin          ###   ########.fr       */
+/*   Created: 2023/03/27 16:36:33 by bsengeze          #+#    #+#             */
+/*   Updated: 2023/07/02 22:11:22 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
 
-char	*gnl_str_cut(char *str)
+char	*ft_get_line(char *rem_txt)
 {
-	char	*new;
-	size_t	i;
-	size_t	len;
+	char	*curr_line;
+	int		i;
 
 	i = 0;
-	len = gnl_strlen(str);
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (free(str), NULL);
-	if (str == 0)
+	if (!*rem_txt)
 		return (NULL);
-	while ((str[i]) && str[i] != '\n')
+	while (rem_txt[i] && rem_txt[i] != '\n')
+		i++;
+	curr_line = (char *)malloc(i + 2);
+	if (!curr_line)
+		return (NULL);
+	i = 0;
+	while (rem_txt[i] && rem_txt[i] != '\n')
 	{
-		new[i] = str[i];
+		curr_line[i] = rem_txt[i];
 		i++;
 	}
-	if (str[i] == '\n')
-		new[i++] = '\n';
-	new[i] = '\0';
-	return (free(str), new);
-}
-
-char	*read_to_stash(int fd, char *str)
-{
-	char	*buffer;
-	int		cursor;
-
-	cursor = 1;
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	while (!gnl_strchr(str, '\n') && cursor != 0)
+	if (rem_txt[i] == '\n')
 	{
-		cursor = read(fd, buffer, BUFFER_SIZE);
-		if (cursor == -1)
-			return (free(buffer), free(str), NULL);
-		buffer[cursor] = 0;
-		str = gnl_strjoin(str, buffer);
+		curr_line[i] = '\n';
+		curr_line[i + 1] = '\0';
 	}
-	return (free(buffer), str);
+	else
+		curr_line[i] = '\0';
+	return (curr_line);
 }
 
-char	*stash_to_line(char *str)
+char	*ft_update_remaining(char *rem_txt)
 {
-	char	*line;
-	size_t	len;
-
-	len = gnl_strlen(str);
-	line = gnl_calloc (sizeof(char), len + 1);
-	if (!line)
-		return (NULL);
-	line = gnl_strjoin(line, str);
-	if (line[0] == 0)
-		return (free(line), NULL);
-	return (gnl_str_cut(line));
-}
-
-char	*update_stash(char *str)
-{
+	char	*updated_remaining;
 	int		i;
 	int		j;
 
-	i = gnl_strchr(str, '\n');
-	if (!gnl_strchr(str, '\n') && str[i] != '\n')
-		return (free(str), NULL);
+	i = 0;
 	j = 0;
-	while (str[i + 1])
-	{
-		str[j++] = str[i + 1];
+	if (!rem_txt)
+		return (NULL);
+	while (rem_txt[i] && rem_txt[i] != '\n')
 		i++;
-	}
-	while (str[j] != '\0')
+	if (!rem_txt[i])
 	{
-		str[j] = '\0';
-		j++;
+		free(rem_txt);
+		return (NULL);
 	}
-	return (str);
+	updated_remaining = (char *)malloc(gnl_strlen(rem_txt) - i + 1);
+	if (!updated_remaining)
+		return (NULL);
+	i++;
+	while (rem_txt[i])
+		updated_remaining[j++] = rem_txt[i++];
+	updated_remaining[j] = '\0';
+	free(rem_txt);
+	return (updated_remaining);
 }
 
+char	*ft_read_file(int fd, char *rem_txt)
+{
+	char	*buffer;
+	int		read_bytes;
+
+	read_bytes = 1;
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	while (!gnl_strchr(rem_txt, '\n') && read_bytes != 0)
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+		{
+			free(buffer);
+			free(rem_txt);
+			return (NULL);
+		}
+		buffer[read_bytes] = '\0';
+		rem_txt = gnl_strjoin(rem_txt, buffer);
+	}
+	free(buffer);
+	return (rem_txt);
+}
+
+// returns a line read from a
+// file descriptor
 char	*get_next_line(int fd)
 {
-	static char	*stash;
-	char		*line;
+	static char	*rem_txt;
+	char		*curr_line;
 
-	if ((fd < 0) || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = read_to_stash(fd, stash);
-	if (stash == NULL)
+	rem_txt = ft_read_file(fd, rem_txt);
+	if (!rem_txt)
 		return (NULL);
-	line = stash_to_line(stash);
-	stash = update_stash(stash);
-	return (line);
+	curr_line = ft_get_line(rem_txt);
+	rem_txt = ft_update_remaining(rem_txt);
+	return (curr_line);
 }
+/*
+# include <fcntl.h>
+int main(void)
+{
+    int fd;
 
-// int	main(void)
-// {
-// 	char	*lines;
-// 	int		i;
-// 	int		fd;
+    fd = open("test.txt", O_RDONLY);
+    char *line;
+    while ((line = get_next_line(fd)))
+    {
+        printf("%s\n", line);
+        free(line);
+    }
+    //close(fd);
+    return (0);
+}
+*/
+/* 
+# include <fcntl.h>
+int main(void)
+{
+	int fd_empty;
 
-// 	i = 1;
-// 	fd = open("sw.txt", O_RDONLY);
-// 	while (i <= 11)
-// 	{
-// 		lines = get_next_line(fd);
-// 		printf("%s\n", lines);
-// 		free (lines);
-// 		i++;
-// 	}	
-// 	close(fd);
-// 	return (0);
-// }
+	fd_empty = open("empty_test.txt", O_RDONLY);
+	char *line;
+	while ((line = get_next_line(fd_empty)))
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	//close(fd);
+	return (0);
+}
+ */
+/* 
+# include <fcntl.h>
+int main(void)
+{
+	int read_error;
 
-// 	int		fd;
-// 	char	*nxt;
-
-// 	fd = open("sw.txt", O_RDONLY);
-// 	while ((nxt = get_next_line(fd)))
-// 	{
-// 		printf("%s\n", nxt);
-// 	}
-// 	return (0);
-// }
+	read_error = open("read_error.txt", O_RDONLY);
+	char *line;
+	while ((line = get_next_line(read_error)))
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	//close(fd);
+	return (0);
+}
+ */

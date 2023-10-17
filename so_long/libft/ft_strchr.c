@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:09:47 by aparvin           #+#    #+#             */
-/*   Updated: 2023/01/03 11:39:51 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/18 18:18:24 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/22 22:10:33 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strchr(const char	*s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	while ((char)c != *s)
-	{
-		if (!*s)
-			return (0);
+	while (*s && *s != (char)c)
 		s++;
-	}
-	return ((char *)s);
+	if (*s == (char)c)
+		return ((char *)s);
+	return (0);
 }
 /*
 int main(void)
 {
-	const char* s = "teste";
-	int c = 't' + 256;
+    char *test = "Berkcan";
+    char c = 'c';
+    //char *rest = ft_strchr(test, c);
+    //printf("Rest of the string is: %s ",rest);
+    printf("Result is: %s ",ft_strchr(test, c));
 
-	printf("SRC:\t%s\n", s);
-	printf("SL:\t%p\n", strchr(s,c));
-	printf("42:\t%p\n", ft_strchr(s, c));
 }
 */

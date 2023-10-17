@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aparvin <aparvin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: bsengeze <bsengeze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 10:40:48 by aparvin           #+#    #+#             */
-/*   Updated: 2022/12/16 16:04:14 by aparvin          ###   ########.fr       */
+/*   Created: 2022/12/13 16:14:00 by bsengeze          #+#    #+#             */
+/*   Updated: 2022/12/15 19:48:27 by bsengeze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <strings.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	while (n--)
-	{
-		*(unsigned char *)s = '\0';
-		s++;
-	}
+	ft_memset(s, '\0', n);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*str;
+
+	str = strdup("helloooooo world");
+	ft_bzero((void *)str, 5);
+	
+	printf("%s\n", str);
+}
+*/

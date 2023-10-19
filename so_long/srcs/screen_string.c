@@ -17,7 +17,7 @@ void	screen_str(t_game *game)
 	game->img->print_moves = mlx_put_string(game->mlx, "MOVES:",
 			(game->width - 3) * PIXELS, game->height * PIXELS - 48);
 	mlx_image_to_window(game->mlx, game->img->collectible,
-		(game->width - 1.6) * PIXELS, game->height * PIXELS - 55);
+		(game->width - 1.6) * PIXELS, game->height * PIXELS - 5);
 	mlx_put_string(game->mlx, ":", (game->width - 1.2) * PIXELS,
 		game->height * PIXELS - 48);
 }

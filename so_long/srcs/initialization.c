@@ -67,6 +67,5 @@ t_img	*init_img_struct(mlx_t *mlx)
 	images = load_exit_closed(mlx, images);
 	images = load_exit_open(mlx, images);
 	images = load_enemy_texture(mlx, images);
-	//images = load_player_dead(mlx, images);
 	return (images);
 }

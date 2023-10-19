@@ -33,7 +33,7 @@ void	move_hook(mlx_key_data_t keydata, void *tmp)
 void	pick_collectibles(t_game *game, int y, int x)
 {
 	size_t	collectible_i;
-	
+
 	collectible_i = 0;
 	x = x * PIXELS + 16;
 	y = y * PIXELS + 16;

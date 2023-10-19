@@ -103,7 +103,6 @@ t_img	*load_player_right_texture(mlx_t *mlx, t_img *img);
 t_img	*load_player_left_texture(mlx_t *mlx, t_img *img);
 t_img	*load_player_up_texture(mlx_t *mlx, t_img *img);
 t_img	*load_player_down_texture(mlx_t *mlx, t_img *img);
-//t_img	*load_player_dead(mlx_t *mlx, t_img *img);
 void	fill_background(t_game *game);
 void	select_image(t_game *game, size_t y, size_t x);
 void	render_map(t_game *game);

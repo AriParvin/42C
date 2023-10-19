@@ -46,8 +46,7 @@ void	kill_check(const t_game *game)
 			== (size_t)game->img->enemy->instances[count].y)
 		{
 			mlx_close_window(game->mlx);
-			ft_putendl_fd("Oooops, you lost!", 1);
-			ft_putendl_fd("Try again!", 1);
+			ft_putendl_fd("You have been flattened by a rogue tire.", 1);
 		}
 		count++;
 	}
